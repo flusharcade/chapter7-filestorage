@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+  	xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+	x:Class="Locator.Pages.MapPage"
+	BackgroundColor="White">
+
+	<ContentPage.Content>
+
+	<Grid x:Name="Grid" RowSpacing="10" Padding="10, 10, 10, 10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<maps:Map x:Name="MapView" IsShowingUser="true" BackgroundColor="Red" Grid.Row="0" Grid.Column="0"/>
+
+		<Label x:Name="AddressLabel" Text="{Binding Address}" Grid.Row="1" Grid.Column="0"/>
+	</Grid>
+
+	</ContentPage.Content>
+
+</ContentPage>
