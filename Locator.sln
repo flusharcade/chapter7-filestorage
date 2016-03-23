@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locator.Droid", "Droid\Loca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locator.Portable", "Locator.Portable\Locator.Portable.csproj", "{33E01838-2FAE-4547-B441-95145E5DF630}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Locator.Shared", "Locator.Shared\Locator.Shared.shproj", "{00F66C12-89A7-4163-A8B7-5E0E644BD09E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

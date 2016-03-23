@@ -16,6 +16,8 @@ namespace Locator.Portable.Location
 		double Latitude {get; set;}
 
 		double Longitude {get; set;}
+
+		public string Address {get; set;}
 	}
 }
 

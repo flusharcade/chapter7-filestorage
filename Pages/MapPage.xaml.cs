@@ -16,12 +16,15 @@ namespace Locator.Pages
 	using Locator.Portable.ViewModels;
 	using Locator.Portable.Ioc;
 	using Locator.Portable.Location;
+	using Locator.UI;
 
-	public partial class MapPage : ContentPage
+	public partial class MapPage : ContentPage, INavigableXamarinFormsPage
 	{
 		private MapPageViewModel viewModel;
 
-		private IDisposable subscriptions;
+		private IDisposable locationUpdateSubscriptions;
+
+		private IDisposable closestSubscriptions;
 
 		private Geocoder geocoder;
 
@@ -46,17 +49,23 @@ namespace Locator.Pages
 		{
 			this.viewModel.OnDisppear ();
 
-			this.subscriptions = this.viewModel.LocationUpdates.Subscribe (locationChanged);
+			if (this.locationUpdateSubscriptions != null) 
+			{
+				this.locationUpdateSubscriptions.Dispose ();
+			}
+
+			if (this.closestSubscriptions != null) 
+			{
+				this.closestSubscriptions.Dispose ();
+			}
 		}
 
 		private void handleAppearing (object sender, EventArgs e)
 		{
 			this.viewModel.OnAppear ();
 
-			if (this.subscriptions != null) 
-			{
-				this.subscriptions.Dispose ();
-			}
+			this.locationUpdateSubscriptions = this.viewModel.LocationUpdates.Subscribe (locationChanged);
+			this.closestSubscriptions = this.viewModel.ClosestUpdates.Subscribe (closestChanged);
 		}
 
 		private async void locationChanged (IPosition position)
@@ -79,6 +88,28 @@ namespace Locator.Pages
 			{
 				System.Diagnostics.Debug.WriteLine ("MapPage: Error with moving map region - " + e);
 			}
+		}
+
+		private async void closestChanged (IPosition position)
+		{
+			try 
+			{
+				var pin = new Pin()
+				{
+					Type = PinType.Place,
+					Position = new Xamarin.Forms.Maps.Position (position.Latitude, position.Longitude),
+					Label = "Closest Location",
+					Address = position.Address
+				};
+			}
+			catch (Exception e) 
+			{
+				System.Diagnostics.Debug.WriteLine ("MapPage: Error with moving pin - " + e);
+			}
+		}
+
+		public void OnNavigatedTo(IDictionary<string, object> navigationParameters)
+		{
 		}
 	}
 }

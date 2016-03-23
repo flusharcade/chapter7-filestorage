@@ -13,7 +13,7 @@ namespace Locator.iOS.Modules
 	using Locator.iOS.Location;
 	using Locator.iOS.Extras;
 
-	using Locator.Extras;
+	using Locator.Portable.Extras;
 
 	using Locator.Portable.Location;
 

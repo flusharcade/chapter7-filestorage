@@ -15,6 +15,8 @@ namespace Locator.iOS
 
 	using Locator.iOS.Modules;
 
+	using Locator.Shared.Modules;
+
 	using Locator.Modules;
 
 	using Locator.Portable.Ioc;
@@ -38,6 +40,7 @@ namespace Locator.iOS
 		{
 			IoC.CreateContainer ();
 			IoC.RegisterModule (new IOSModule());
+			IoC.RegisterModule (new SharedModule(false));
 			IoC.RegisterModule (new XamFormsModule());
 			IoC.RegisterModule (new PortableModule());
 			IoC.StartContainer ();

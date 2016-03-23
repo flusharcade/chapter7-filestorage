@@ -4,7 +4,6 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-
 namespace Locator.Droid.Modules
 {
 	using Locator.Portable.Ioc;
@@ -14,7 +13,7 @@ namespace Locator.Droid.Modules
 	using Locator.Droid.Location;
 	using Locator.Droid.Extras;
 
-	using Locator.Extras;
+	using Locator.Portable.Extras;
 
 	using Locator.Portable.Location;
 

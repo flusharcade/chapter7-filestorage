@@ -136,7 +136,7 @@ namespace Locator.Portable.ViewModels
 			IMethods methods) : base (navigation)
 		{
 			this.exitCommand = commandFactory (() => methods.Exit());
-			this.locationCommand = commandFactory (() => this.Navigation.Navigate(PageNames.MapPage));
+			this.locationCommand = commandFactory (() => this.Navigation.Navigate(PageNames.MapPage, null));
 		}
 
 		#endregion

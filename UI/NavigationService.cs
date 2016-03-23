@@ -3,6 +3,7 @@
 //   Copyright (c) 2015 Flush Arcade All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
+using System.Collections.Generic;
 
 namespace Locator.UI
 {
@@ -20,13 +21,19 @@ namespace Locator.UI
 	{
 		#region INavigationService implementation
 
-		public async void Navigate (PageNames pageName)
+		public async void Navigate (PageNames pageName, IDictionary<string, object> navigationParameters)
 		{
 			var page = this.getPage (pageName);
 
 			if (page != null) 
 			{
-				await IoC.Resolve<NavigationPage>().PushAsync (page);
+				var navigablePage = page as INavigableXamarinFormsPage;
+
+				if (navigablePage != null) 
+				{
+					await IoC.Resolve<NavigationPage> ().PushAsync (page);
+					navigablePage.OnNavigatedTo ();
+				}
 			}
 		}
 

@@ -15,6 +15,8 @@ namespace Locator.Portable.Modules
 	using Locator.Portable.UI;
 	using Locator.Portable.Location;
 
+	using Locator.Portable.Repositories.GeocodingRepository;
+
 	public class PortableModule : IModule
 	{
 		public void Register(ContainerBuilder builer)
@@ -23,6 +25,8 @@ namespace Locator.Portable.Modules
 			builer.RegisterType<MapPageViewModel> ().SingleInstance();
 
 			builer.RegisterType<Position> ().As<IPosition>().SingleInstance();
+
+			builer.RegisterType<GeocodingRepository> ().As<IGeocodingRepository>().SingleInstance();
 		}
 	}
 }

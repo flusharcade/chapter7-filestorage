@@ -13,8 +13,9 @@ namespace Locator.Pages
 
 	using Locator.Portable.ViewModels;
 	using Locator.Portable.Ioc;
+	using Locator.UI;
 
-	public partial class MainPage : ContentPage
+	public partial class MainPage : ContentPage, INavigableXamarinFormsPage 
 	{
 		private MainPageViewModel viewModel;
 
@@ -27,6 +28,11 @@ namespace Locator.Pages
 		{
 			this.BindingContext = model;
 			this.InitializeComponent ();
+		}
+
+		public void OnNavigatedTo(IDictionary<string, object> navigationParameters)
+		{
+			this.Show (navigationParameters);
 		}
 	}
 }

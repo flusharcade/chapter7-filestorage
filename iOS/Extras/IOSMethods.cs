@@ -8,10 +8,12 @@ namespace Locator.iOS.Extras
 {
 	using UIKit;
 
+	using Locator.Portable.Extras;
+
 	/// <summary>
 	/// The methods interface
 	/// </summary>
-	public class IOSMethods
+	public class IOSMethods : IMethods
 	{
 		public void Exit()
 		{
