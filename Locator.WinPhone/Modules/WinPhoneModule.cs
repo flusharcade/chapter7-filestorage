@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace SpeechTalk.WinPhone.Modules
+namespace Locator.WinPhone.Modules
 {   
     using System;
     using System.Collections.Generic;
@@ -14,14 +14,18 @@ namespace SpeechTalk.WinPhone.Modules
 
     using Autofac;
 
-    using Locator.Ioc;
-    using Locator.WinPhone.Services;
+    using Locator.WinPhone.Location;
+    using Locator.WinPhone.Extras;
+    using Locator.Portable.Location;
+    using Locator.Portable.Extras;
+    using Locator.Portable.Ioc;
 
     public class WinPhoneModule : IModule
     {
         public void Register(ContainerBuilder builer)
         {
-            builer.RegisterType<TextToSpeechWinPhone>().As<ITextToSpeech>().SingleInstance();
+            builer.RegisterType<GeolocatorWinPhone>().As<IGeolocator>().SingleInstance();
+            builer.RegisterType<WinPhoneMethods>().As<IMethods>().SingleInstance();
         }
     }
 }

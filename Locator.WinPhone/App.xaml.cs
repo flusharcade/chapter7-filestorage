@@ -69,7 +69,8 @@ namespace Locator.WinPhone
                     // TODO: Load state from previously suspended application
                 }
 
-                Xamarin.Forms.Forms.Init();
+                Xamarin.FormsMaps.Init();
+                Xamarin.Forms.Forms.Init(e);
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;

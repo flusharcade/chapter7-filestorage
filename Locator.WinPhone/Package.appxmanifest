@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="a92a8c61-c5ed-4476-8f45-957ff9c0aaf9" Publisher="CN=Michael" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="a92a8c61-c5ed-4476-8f45-957ff9c0aaf9" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="4e26acb6-db22-4d0e-a224-33fba73f9c57" Publisher="CN=Michael" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="4e26acb6-db22-4d0e-a224-33fba73f9c57" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Locator.WinPhone</DisplayName>
     <PublisherDisplayName>Michael</PublisherDisplayName>

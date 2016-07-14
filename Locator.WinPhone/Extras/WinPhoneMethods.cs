@@ -6,8 +6,6 @@
 
 namespace Locator.WinPhone.Extras
 {
-    using UIKit;
-
     using Locator.Portable.Extras;
 
     using Windows.UI.Xaml;
@@ -19,7 +17,7 @@ namespace Locator.WinPhone.Extras
     {
         public void Exit()
         {
-            Application.Current.Terminate();
+            Application.Current.Exit();
         }
     }
 }
