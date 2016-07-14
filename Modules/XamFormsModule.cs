@@ -1,12 +1,11 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PCLModule.cs" company="Flush Arcade">
+// <copyright file="XamFormsModule.cs" company="Flush Arcade">
 //   Copyright (c) 2015 Flush Arcade All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Locator.Modules
 {
-	using System;
 	using System.Windows.Input;
 
 	using Autofac;
@@ -19,14 +18,21 @@ namespace Locator.Modules
 
 	using Locator.Portable.UI;
 
+	/// <summary>
+	/// Xamarin forms module.
+	/// </summary>
 	public class XamFormsModule : IModule
 	{
+		/// <summary>
+		/// Register the specified builer.
+		/// </summary>
+		/// <param name="builer">Builer.</param>
 		public void Register(ContainerBuilder builer)
 		{
 			builer.RegisterType<MainPage> ().SingleInstance();
 			builer.RegisterType<MapPage> ().SingleInstance();
 
-			builer.RegisterType<Xamarin.Forms.Command> ().As<ICommand>().SingleInstance();
+			builer.RegisterType<Command> ().As<ICommand>().InstancePerDependency();
 
 			builer.Register (x => new NavigationPage(x.Resolve<MainPage>())).AsSelf().SingleInstance();
 
@@ -34,4 +40,3 @@ namespace Locator.Modules
 		}
 	}
 }
-

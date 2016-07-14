@@ -3,11 +3,11 @@
 //   Copyright (c) 2015 Flush Arcade All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-using System.Collections.Generic;
 
 namespace Locator.UI
 {
-	using System;
+	using System.Threading.Tasks;
+	using System.Collections.Generic;
 
 	using Xamarin.Forms;
 
@@ -21,9 +21,9 @@ namespace Locator.UI
 	{
 		#region INavigationService implementation
 
-		public async void Navigate (PageNames pageName, IDictionary<string, object> navigationParameters)
+		public async Task Navigate (PageNames pageName, IDictionary<string, object> navigationParameters)
 		{
-			var page = this.getPage (pageName);
+			var page = GetPage (pageName);
 
 			if (page != null) 
 			{
@@ -32,14 +32,14 @@ namespace Locator.UI
 				if (navigablePage != null) 
 				{
 					await IoC.Resolve<NavigationPage> ().PushAsync (page);
-					navigablePage.OnNavigatedTo ();
+					navigablePage.OnNavigatedTo (navigationParameters);
 				}
 			}
 		}
 
 		#endregion
 
-		private Page getPage(PageNames page)
+		private Page GetPage(PageNames page)
 		{
 			switch(page)
 			{

@@ -3,14 +3,14 @@
 //   Copyright (c) 2015 Flush Arcade All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Reactive.Threading.Tasks;
 
 namespace Locator.Portable.ViewModels
 {
 	using System;
 	using System.ComponentModel;
+	using System.Collections.Generic;
+	using System.Threading.Tasks;
+	using System.Reactive.Threading.Tasks;
 	using System.Runtime.CompilerServices;
 
 	using Locator.Portable.UI;
@@ -39,7 +39,7 @@ namespace Locator.Portable.ViewModels
 
 		public ViewModelBase(INavigationService navigation)
 		{
-			this.Navigation = navigation;
+			Navigation = navigation;
 		}
 
 		#endregion
@@ -52,7 +52,7 @@ namespace Locator.Portable.ViewModels
 		/// <param name="propertyName">Property name.</param>
 		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
-			PropertyChangedEventHandler handler = this.PropertyChanged;
+			PropertyChangedEventHandler handler = PropertyChanged;
 
 			if (handler != null)
 			{
@@ -66,7 +66,7 @@ namespace Locator.Portable.ViewModels
 		/// </param>
 		public async void OnShow(IDictionary<string, object> parameters)
 		{
-			this.LoadAsync(parameters).ToObservable().Subscribe(
+			LoadAsync(parameters).ToObservable().Subscribe(
 				result =>
 				{
 					// we can add things to do after we load the view model

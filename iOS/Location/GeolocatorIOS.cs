@@ -23,10 +23,10 @@ namespace Locator.iOS.Location
 
 		public GeolocatorIOS()
 		{
-			this.Positions = new Subject<IPosition> ();
+			Positions = new Subject<IPosition> ();
 		
-			this.locationManager = new CLLocationManager();
-			this.locationManager.PausesLocationUpdatesAutomatically = false; 
+			locationManager = new CLLocationManager();
+			locationManager.PausesLocationUpdatesAutomatically = false; 
 
 			// iOS 8 has additional permissions requirements
 			if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0)) 
@@ -50,10 +50,11 @@ namespace Locator.iOS.Location
 			var location = e.Locations.LastOrDefault ();
 			if (location != null)
 			{
-				Console.WriteLine ("Location updated, position: " + location.Coordinate.Latitude + "-" + location.Coordinate.Longitude);
+				Console.WriteLine ("Location updated, position: " + location.Coordinate.Latitude + 
+				                   "-" + location.Coordinate.Longitude);
 
 				// fire our custom Location Updated event
-				this.Positions.OnNext(new Position()
+				Positions.OnNext(new Position()
 					{
 						Latitude = location.Coordinate.Latitude,
 						Longitude = location.Coordinate.Longitude,

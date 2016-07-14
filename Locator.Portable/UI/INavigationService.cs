@@ -6,12 +6,14 @@
 
 namespace Locator.Portable.UI
 {
-	using Locator.Portable.Enums;
 	using System.Collections.Generic;
+	using System.Threading.Tasks;
+
+	using Locator.Portable.Enums;
 
 	public interface INavigationService
 	{
-		void Navigate (PageNames pageName, IDictionary<string, object> navigationParameters);
+		Task Navigate (PageNames pageName, IDictionary<string, object> navigationParameters);
 	}
 }
 

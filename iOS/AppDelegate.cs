@@ -6,10 +6,6 @@
 
 namespace Locator.iOS
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-
 	using Foundation;
 	using UIKit;
 
@@ -27,16 +23,17 @@ namespace Locator.iOS
 	{
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
+			global::Xamarin.FormsMaps.Init();
 			global::Xamarin.Forms.Forms.Init ();
 
-			this.initIoC ();
+			InitIoC ();
 
 			LoadApplication (new App ());
 
 			return base.FinishedLaunching (app, options);
 		}
 
-		private void initIoC()
+		private void InitIoC()
 		{
 			IoC.CreateContainer ();
 			IoC.RegisterModule (new IOSModule());
@@ -47,4 +44,3 @@ namespace Locator.iOS
 		}
 	}
 }
-

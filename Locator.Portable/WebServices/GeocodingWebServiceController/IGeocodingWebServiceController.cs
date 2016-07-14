@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IGeocodingRepository.cs" company="Flush Arcade">
+// <copyright file="IGeocodingWebServiceController.cs" company="Flush Arcade">
 //   Copyright (c) 2015 Flush Arcade All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -11,9 +11,9 @@ namespace Locator.Portable.Repositories.GeocodingRepository
 	using Locator.Portable.Repositories.GeocodingRepository.Contracts;
 
 	/// <summary>
-	/// The geocoding repository interface.
+	/// The geocoding web service controller interface.
 	/// </summary>
-	public interface IGeocodingRepository
+	public interface IGeocodingWebServiceController
 	{
 		#region Methods and Operators
 

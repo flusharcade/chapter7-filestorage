@@ -13,10 +13,9 @@ namespace Locator.Pages
 	using Xamarin.Forms;
 	using Xamarin.Forms.Maps;
 
-	using Locator.Portable.ViewModels;
-	using Locator.Portable.Ioc;
-	using Locator.Portable.Location;
 	using Locator.UI;
+	using Locator.Portable.ViewModels;
+	using Locator.Portable.Location;
 
 	public partial class MapPage : ContentPage, INavigableXamarinFormsPage
 	{
@@ -30,59 +29,62 @@ namespace Locator.Pages
 
 		public MapPage ()
 		{
-			this.InitializeComponent ();
+			InitializeComponent ();
 		}
 
 		public MapPage (MapPageViewModel model)
 		{
-			this.viewModel = model;
-			this.BindingContext = model;
-			this.InitializeComponent ();
+			viewModel = model;
+			BindingContext = model;
+			InitializeComponent ();
 
-			this.Appearing += handleAppearing;
-			this.Disappearing += handleDisappearing;
+			Appearing += HandleAppearing;
+			Disappearing += HandleDisappearing;
 
-			this.geocoder = new Geocoder ();
+			geocoder = new Geocoder ();
 		}
 
-		private void handleDisappearing (object sender, EventArgs e)
+		private void HandleDisappearing (object sender, EventArgs e)
 		{
-			this.viewModel.OnDisppear ();
+			viewModel.OnDisppear ();
 
-			if (this.locationUpdateSubscriptions != null) 
+			if (locationUpdateSubscriptions != null) 
 			{
-				this.locationUpdateSubscriptions.Dispose ();
+				locationUpdateSubscriptions.Dispose ();
 			}
 
-			if (this.closestSubscriptions != null) 
+			if (closestSubscriptions != null) 
 			{
-				this.closestSubscriptions.Dispose ();
+				closestSubscriptions.Dispose ();
 			}
 		}
 
-		private void handleAppearing (object sender, EventArgs e)
+		private void HandleAppearing (object sender, EventArgs e)
 		{
-			this.viewModel.OnAppear ();
+			viewModel.OnAppear ();
 
-			this.locationUpdateSubscriptions = this.viewModel.LocationUpdates.Subscribe (locationChanged);
-			this.closestSubscriptions = this.viewModel.ClosestUpdates.Subscribe (closestChanged);
+			locationUpdateSubscriptions = viewModel.LocationUpdates.Subscribe (LocationChanged);
+			closestSubscriptions = viewModel.ClosestUpdates.Subscribe (ClosestChanged);
 		}
 
-		private async void locationChanged (IPosition position)
+		private void LocationChanged (IPosition position)
 		{
 			try 
 			{
 				var formsPosition = new Xamarin.Forms.Maps.Position(position.Latitude, position.Longitude);
 
-				this.MapView.MoveToRegion (MapSpan.FromCenterAndRadius (formsPosition, Distance.FromMiles (0.3)));
+				geocoder.GetAddressesForPositionAsync(formsPosition)
+				        .ContinueWith(_ =>
+						{
+							var mostRecent = _.Result.FirstOrDefault();
+							if (mostRecent != null)
+							{
+								viewModel.Address = mostRecent;
+							}
+						})
+				        .ConfigureAwait(false);
 
-				var addresses = await this.geocoder.GetAddressesForPositionAsync(formsPosition);
-
-				var mostRecent = addresses.LastOrDefault();
-				if (mostRecent != null)
-				{
-					this.viewModel.Address = mostRecent;
-				}
+				MapView.MoveToRegion(MapSpan.FromCenterAndRadius(formsPosition, Distance.FromMiles(0.3)));
 			}
 			catch (Exception e) 
 			{
@@ -90,7 +92,7 @@ namespace Locator.Pages
 			}
 		}
 
-		private async void closestChanged (IPosition position)
+		private void ClosestChanged (IPosition position)
 		{
 			try 
 			{
@@ -101,6 +103,11 @@ namespace Locator.Pages
 					Label = "Closest Location",
 					Address = position.Address
 				};
+
+				MapView.Pins.Add(pin);
+
+				MapView.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(position.Latitude, position.Longitude)
+				                                                 , Distance.FromMiles(0.3)));
 			}
 			catch (Exception e) 
 			{
@@ -110,7 +117,7 @@ namespace Locator.Pages
 
 		public void OnNavigatedTo(IDictionary<string, object> navigationParameters)
 		{
+			this.Show(navigationParameters);
 		}
 	}
 }
-

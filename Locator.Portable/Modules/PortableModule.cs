@@ -26,7 +26,7 @@ namespace Locator.Portable.Modules
 
 			builer.RegisterType<Position> ().As<IPosition>().SingleInstance();
 
-			builer.RegisterType<GeocodingRepository> ().As<IGeocodingRepository>().SingleInstance();
+			builer.RegisterType<GeocodingWebServiceController> ().As<IGeocodingWebServiceController>().SingleInstance();
 		}
 	}
 }

@@ -12,6 +12,7 @@ namespace Locator.Portable.ViewModels
 	using System.Linq;
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
+	using System.Windows.Input;
 
 	using Locator.Portable.UI;
 	using Locator.Portable.Location;
@@ -21,7 +22,7 @@ namespace Locator.Portable.ViewModels
 	{
 		#region Constants
 
-		private IDictionary<int, string[]> addresses = new Dictionary<int, string[]>()
+		private IDictionary<int, string[]> _addresses = new Dictionary<int, string[]>()
 		{
 			{0, new string[] { "120 Rosamond Rd", "Melbourne", "Victoria" }},
 			{1, new string[] { "367 George Street", "Sydney", "New South Wales" }},
@@ -42,21 +43,29 @@ namespace Locator.Portable.ViewModels
 
 		#region Private Properties
 	
-		private IList<IPosition> positions;
+		private IList<IPosition> _positions;
 
-		private Position currentPosition;
+		private IPosition _currentPosition;
 
-		private IDisposable subscriptions;
+		private IDisposable _subscriptions;
 
-		private readonly IGeolocator geolocator;
+		private readonly IGeolocator _geolocator;
 
-		private string address;
+		private readonly IGeocodingWebServiceController _geocodingWebServiceController;
 
-		private string closestAddress;
+		private string _address;
 
-		private readonly IGeocodingRepository geocodingRepository;
+		private string _closestAddress;
 
-		private int geocodesComplete = 0;
+		private string _geolocationButtonTitle = "Start";
+
+		private bool _geolocationUpdating;
+
+		private int _geocodesComplete = 0;
+
+		private ICommand _nearestAddressCommand;
+
+		private ICommand _geolocationCommand;
 
 		#endregion
 
@@ -66,18 +75,18 @@ namespace Locator.Portable.ViewModels
 		{
 			get
 			{
-				return this.address;
+				return _address;
 			}
 
 			set
 			{
-				if (value.Equals(this.address))
+				if (value.Equals(_address))
 				{
 					return;
 				}
 
-				this.address = value;
-				this.OnPropertyChanged("Address");
+				_address = value;
+				OnPropertyChanged("Address");
 			}
 		}
 
@@ -85,18 +94,75 @@ namespace Locator.Portable.ViewModels
 		{
 			get
 			{
-				return this.closestAddress;
+				return _closestAddress;
 			}
 
 			set
 			{
-				if (value.Equals(this.closestAddress))
+				if (value.Equals(_closestAddress))
 				{
 					return;
 				}
 
-				this.closestAddress = value;
-				this.OnPropertyChanged("ClosestAddress");
+				_closestAddress = value;
+				OnPropertyChanged("ClosestAddress");
+			}
+		}
+
+		public string GeolocationButtonTitle
+		{
+			get
+			{
+				return _geolocationButtonTitle;
+			}
+
+			set
+			{
+				if (value.Equals(_geolocationButtonTitle))
+				{
+					return;
+				}
+
+				_geolocationButtonTitle = value;
+				OnPropertyChanged("GeolocationButtonTitle");
+			}
+		}
+
+		public ICommand NearestAddressCommand
+		{
+			get
+			{
+				return _nearestAddressCommand;
+			}
+
+			set
+			{
+				if (value.Equals(_nearestAddressCommand))
+				{
+					return;
+				}
+
+				_nearestAddressCommand = value;
+				OnPropertyChanged("NearestAddressCommand");
+			}
+		}
+
+		public ICommand GeolocationCommand
+		{
+			get
+			{
+				return _geolocationCommand;
+			}
+
+			set
+			{
+				if (value.Equals(_geolocationCommand))
+				{
+					return;
+				}
+
+				_geolocationCommand = value;
+				OnPropertyChanged("GeolocationCommand");
 			}
 		}
 
@@ -104,15 +170,32 @@ namespace Locator.Portable.ViewModels
 
 		#region Constructors
 
-		public MapPageViewModel (INavigationService navigation, IGeolocator geolocator, 
-			IGeocodingRepository geocodingRepository) : base (navigation)
+		public MapPageViewModel (INavigationService navigation, IGeolocator geolocator, Func<Action, ICommand> commandFactory, 
+			IGeocodingWebServiceController geocodingRepository) : base (navigation)
 		{
-			this.geolocator = geolocator;
-			this.geocodingRepository = geocodingRepository;
+			_geolocator = geolocator;
+			_geocodingWebServiceController = geocodingRepository;
 
-			this.positions = new List<IPosition> ();
-			this.LocationUpdates = new Subject<IPosition> ();
-			this.ClosestUpdates = new Subject<IPosition> ();
+			_nearestAddressCommand = commandFactory(() => FindNearestSite());
+			_geolocationCommand = commandFactory(() =>
+			{
+				if (_geolocationUpdating)
+				{
+					geolocator.Stop();
+				}
+				else
+				{
+					geolocator.Start();
+				}
+
+				GeolocationButtonTitle = _geolocationUpdating ? "Start" : "Stop";
+				_geolocationUpdating = !_geolocationUpdating;
+			});
+
+			_positions = new List<IPosition> ();
+
+			LocationUpdates = new Subject<IPosition> ();
+			ClosestUpdates = new Subject<IPosition> ();
 		}
 
 		#endregion
@@ -121,17 +204,17 @@ namespace Locator.Portable.ViewModels
 
 		public async Task getGeocodeFromAddress(string address, string city, string state)
 		{
-			var geoContract = await this.geocodingRepository.GetGeocodeFromAddressAsync (address, city, state);
+			var geoContract = await _geocodingWebServiceController.GetGeocodeFromAddressAsync(address, city, state);
 
-			if (geoContract != null && geoContract.results != null && geoContract.results.Count > 0) 
+			if (geoContract != null && geoContract.results != null && geoContract.results.Count > 0)
 			{
-				var result = geoContract.results.FirstOrDefault ();
+				var result = geoContract.results.FirstOrDefault();
 
-				if (result != null && result.geometry != null && result.geometry.location != null) 
+				if (result != null && result.geometry != null && result.geometry.location != null)
 				{
-					this.geocodesComplete++;
+					_geocodesComplete++;
 
-					this.positions.Add(new Position () 
+					_positions.Add(new Position()
 						{
 							Latitude = result.geometry.location.lat,
 							Longitude = result.geometry.location.lng,
@@ -139,9 +222,9 @@ namespace Locator.Portable.ViewModels
 						});
 
 					// once all geocodes are found, find the closest
-					if (this.geocodesComplete == this.positions.Count)
+					if ((_geocodesComplete == _positions.Count) && _currentPosition != null)
 					{
-						this.findNearestSite ();
+						FindNearestSite();
 					}
 				}
 			}
@@ -154,13 +237,13 @@ namespace Locator.Portable.ViewModels
 
 		private double pythagorasEquirectangular(double lat1, double lon1, double lat2, double lon2)
 		{
-			lat1 = this.degreesToRadians(lat1);
-			lat2 = this.degreesToRadians(lat2);
-			lon1 = this.degreesToRadians(lon1);
-			lon2 = this.degreesToRadians(lon2);
+			lat1 = degreesToRadians(lat1);
+			lat2 = degreesToRadians(lat2);
+			lon1 = degreesToRadians(lon1);
+			lon2 = degreesToRadians(lon2);
 
-			// within a 10km radius
-			var radius = 10000;
+			// within a 5km radius
+			var radius = 5;
 			var x = (lon2 - lon1) * Math.Cos((lat1 + lat2) / 2);
 			var y = (lat2 - lat1);
 			var distance = Math.Sqrt(x * x + y * y) * radius;
@@ -171,33 +254,43 @@ namespace Locator.Portable.ViewModels
 		/// <summary>
 		/// Finds the nearest site.
 		/// </summary>
-		private async void findNearestSite()
+		private void FindNearestSite()
 		{
+			if (_geolocationUpdating)
+			{
+				_geolocationUpdating = false;
+				_geolocator.Stop();
+				GeolocationButtonTitle = "Start";
+			}
+
 			double mindif = 99999;
 			IPosition closest = null;
 			var closestIndex = 0;
 			var index = 0;
 
-			foreach (var position in this.positions)
+			if (_currentPosition != null)
 			{
-				var difference = this.pythagorasEquirectangular(this.currentPosition.Latitude, this.currentPosition.Longitude,
-					position.Latitude, position.Longitude);
-
-				if (difference < mindif)
+				foreach (var position in _positions)
 				{
-					closest = position;
-					closestIndex = index;
-					mindif = difference;
+					var difference = pythagorasEquirectangular(_currentPosition.Latitude, _currentPosition.Longitude,
+						position.Latitude, position.Longitude);
+
+					if (difference < mindif)
+					{
+						closest = position;
+						closestIndex = index;
+						mindif = difference;
+					}
+
+					index++;
 				}
 
-				index++;
-			}
-
-			if (closest != null) 
-			{
-				var array = this.addresses [closestIndex];
-				this.Address == string.Format("{0}, {1}, {2}", array[0], array[1], array[2]);
-				this.ClosestUpdates.OnNext (closest);
+				if (closest != null)
+				{
+					var array = _addresses[closestIndex];
+					Address = string.Format("{0}, {1}, {2}", array[0], array[1], array[2]);
+					ClosestUpdates.OnNext(closest);			
+				}
 			}
 		}
 
@@ -207,21 +300,20 @@ namespace Locator.Portable.ViewModels
 
 		public void OnAppear()
 		{
-			this.geolocator.Start ();
-			this.subscriptions = this.geolocator.Positions.Subscribe (x => 
+			_subscriptions = _geolocator.Positions.Subscribe (x => 
 				{
-					this.findNearestSite();
-					this.LocationUpdates.OnNext(x);
+					_currentPosition = x;
+					LocationUpdates.OnNext(x);
 				});
 		}
 
 		public void OnDisppear()
 		{
-			this.geolocator.Stop ();
+			_geolocator.Stop ();
 
-			if (this.subscriptions != null) 
+			if (_subscriptions != null) 
 			{
-				this.subscriptions.Dispose ();
+				_subscriptions.Dispose ();
 			}
 		}
 
@@ -229,15 +321,16 @@ namespace Locator.Portable.ViewModels
 		{
 			var index = 0;
 
-			foreach (var address in this.addresses) 
+			// all 5 tasks will run in parallel
+			for (int i = 0; i < 5; i++)
 			{
-				var array = this.addresses [index];
-				this.getGeocodeFromAddress (array[0], array[1], array[2]);
+				var array = _addresses [index];
 				index++;
+
+				getGeocodeFromAddress(array[0], array[1], array[2]).ConfigureAwait(false);
 			}
 		}
 
 		#endregion
 	}
 }
-

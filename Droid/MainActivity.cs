@@ -6,17 +6,14 @@
 
 namespace Locator.Droid
 {
-	using System;
-
 	using Android.App;
-	using Android.Content;
 	using Android.Content.PM;
-	using Android.Runtime;
-	using Android.Views;
-	using Android.Widget;
 	using Android.OS;
 
 	using Locator.Droid.Modules;
+
+	using Locator.Shared.Modules;
+
 	using Locator.Modules;
 
 	using Locator.Portable.Modules;
@@ -27,21 +24,24 @@ namespace Locator.Droid
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
-			base.OnCreate (bundle);
+			base.OnCreate(bundle);
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
+			global::Xamarin.FormsMaps.Init(this, bundle);
+
+			InitIoC();
 
 			LoadApplication (new App ());
 		}
 
-		private void initIoC()
+		private void InitIoC()
 		{
 			IoC.CreateContainer ();
 			IoC.RegisterModule (new DroidModule());
+			IoC.RegisterModule (new SharedModule(false));
 			IoC.RegisterModule (new XamFormsModule());
 			IoC.RegisterModule (new PortableModule());
 			IoC.StartContainer ();
 		}
 	}
 }
-

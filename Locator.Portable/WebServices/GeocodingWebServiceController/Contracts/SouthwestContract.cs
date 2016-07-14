@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NortheastContract.cs" company="Health Connex">
-//   Copyright (c) 2015 Health Connex All rights reserved.
+// <copyright file="SouthwestContract.cs" company="Flush Arcade Pty Ltd">
+//   Copyright (c) 2015 Flush Arcade Pty Ltd All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -9,9 +9,9 @@ namespace Locator.Portable.Repositories.GeocodingRepository.Contracts
 	using System.Collections.Generic;
 
     /// <summary>
-    /// Northeast contract.
+    /// Southwest contract.
     /// </summary>
-	public sealed class NortheastContract
+	public sealed class SouthwestContract
     {
         #region Public Properties
 

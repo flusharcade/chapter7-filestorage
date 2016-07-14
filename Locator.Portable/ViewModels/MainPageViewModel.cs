@@ -17,17 +17,17 @@ namespace Locator.Portable.ViewModels
 	{
 		#region Private Properties
 	
-		private readonly IMethods methods;
+		private readonly IMethods _methods;
 
-		private string descriptionMessage = "Find your location";
+		private string _descriptionMessage = "Find your location";
 
-		private string locationTitle = "Find Location";
+		private string _locationTitle = "Find Location";
 
-		private string exitTitle = "Exit";
+		private string _exitTitle = "Exit";
 
-		private ICommand locationCommand;
+		private ICommand _locationCommand;
 
-		private ICommand exitCommand;
+		private ICommand _exitCommand;
 
 		#endregion
 
@@ -37,18 +37,18 @@ namespace Locator.Portable.ViewModels
 		{
 			get
 			{
-				return this.descriptionMessage;
+				return _descriptionMessage;
 			}
 
 			set
 			{
-				if (value.Equals(this.descriptionMessage))
+				if (value.Equals(_descriptionMessage))
 				{
 					return;
 				}
 
-				this.descriptionMessage = value;
-				this.OnPropertyChanged("DescriptionMessage");
+				_descriptionMessage = value;
+				OnPropertyChanged("DescriptionMessage");
 			}
 		}
 
@@ -56,18 +56,18 @@ namespace Locator.Portable.ViewModels
 		{
 			get
 			{
-				return this.locationTitle;
+				return _locationTitle;
 			}
 
 			set
 			{
-				if (value.Equals(this.locationTitle))
+				if (value.Equals(_locationTitle))
 				{
 					return;
 				}
 
-				this.locationTitle = value;
-				this.OnPropertyChanged("LocationTitle");
+				_locationTitle = value;
+				OnPropertyChanged("LocationTitle");
 			}
 		}
 
@@ -75,18 +75,18 @@ namespace Locator.Portable.ViewModels
 		{
 			get
 			{
-				return this.exitTitle;
+				return _exitTitle;
 			}
 
 			set
 			{
-				if (value.Equals(this.exitTitle))
+				if (value.Equals(_exitTitle))
 				{
 					return;
 				}
 
-				this.exitTitle = value;
-				this.OnPropertyChanged("ExitTitle");
+				_exitTitle = value;
+				OnPropertyChanged("ExitTitle");
 			}
 		}
 
@@ -94,18 +94,18 @@ namespace Locator.Portable.ViewModels
 		{
 			get
 			{
-				return this.locationCommand;
+				return _locationCommand;
 			}
 
 			set
 			{
-				if (value.Equals(this.locationCommand))
+				if (value.Equals(_locationCommand))
 				{
 					return;
 				}
 
-				this.locationCommand = value;
-				this.OnPropertyChanged("LocationCommand");
+				_locationCommand = value;
+				OnPropertyChanged("LocationCommand");
 			}
 		}
 
@@ -113,18 +113,18 @@ namespace Locator.Portable.ViewModels
 		{
 			get
 			{
-				return this.exitCommand;
+				return _exitCommand;
 			}
 
 			set
 			{
-				if (value.Equals(this.exitCommand))
+				if (value.Equals(_exitCommand))
 				{
 					return;
 				}
 
-				this.exitCommand = value;
-				this.OnPropertyChanged("ExitCommand");
+				_exitCommand = value;
+				OnPropertyChanged("ExitCommand");
 			}
 		}
 
@@ -135,11 +135,10 @@ namespace Locator.Portable.ViewModels
 		public MainPageViewModel (INavigationService navigation, Func<Action, ICommand> commandFactory,
 			IMethods methods) : base (navigation)
 		{
-			this.exitCommand = commandFactory (() => methods.Exit());
-			this.locationCommand = commandFactory (() => this.Navigation.Navigate(PageNames.MapPage, null));
+			_exitCommand = commandFactory (() => methods.Exit());
+			_locationCommand = commandFactory (async () => await Navigation.Navigate(PageNames.MapPage, null));
 		}
 
 		#endregion
 	}
 }
-

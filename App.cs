@@ -18,7 +18,7 @@ namespace Locator
 	{
 		public App ()
 		{
-			this.MainPage = IoC.Resolve<NavigationPage> ();
+			MainPage = IoC.Resolve<NavigationPage> ();
 		}
 
 		protected override void OnStart ()

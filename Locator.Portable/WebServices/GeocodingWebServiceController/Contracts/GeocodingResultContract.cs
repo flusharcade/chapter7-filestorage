@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GeocodingResultContract.cs" company="Health Connex">
-//   Copyright (c) 2015 Health Connex All rights reserved.
+// <copyright file="GeocodingResultContract.cs" company="Flush Arcade Pty Ltd">
+//   Copyright (c) 2015 Flush Arcade Pty Ltd All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 

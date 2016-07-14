@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SouthwestContract.cs" company="Health Connex">
-//   Copyright (c) 2015 Health Connex All rights reserved.
+// <copyright file="ViewportContract.cs" company="Flush Arcade Pty Ltd">
+//   Copyright (c) 2015 Flush Arcade Pty Ltd All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -9,23 +9,23 @@ namespace Locator.Portable.Repositories.GeocodingRepository.Contracts
 	using System.Collections.Generic;
 
     /// <summary>
-    /// Southwest contract.
+    /// Viewport contract.
     /// </summary>
-	public sealed class SouthwestContract
+	public sealed class ViewportContract
     {
         #region Public Properties
 
 		/// <summary>
-		/// Gets or sets the lat.
+		/// Gets or sets the northeast.
 		/// </summary>
-		/// <value>The lat.</value>
-		public double lat { get; set; }
+		/// <value>The northeast.</value>
+		public NortheastContract northeast { get; set; }
 
 		/// <summary>
-		/// Gets or sets the lng.
+		/// Gets or sets the southwest.
 		/// </summary>
-		/// <value>The lng.</value>
-		public double lng { get; set; }
+		/// <value>The southwest.</value>
+		public SouthwestContract southwest { get; set; }
 
         #endregion
     }
