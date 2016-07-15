@@ -1,5 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ViewModelBase.cs" company="Flush Arcade">
+﻿// <copyright file="ViewModelBase.cs" company="Flush Arcade">
 //   Copyright (c) 2015 Flush Arcade All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -64,7 +63,7 @@ namespace Locator.Portable.ViewModels
 		/// </summary>
 		/// <param name="parameters">
 		/// </param>
-		public async void OnShow(IDictionary<string, object> parameters)
+		public void OnShow(IDictionary<string, object> parameters)
 		{
 			LoadAsync(parameters).ToObservable().Subscribe(
 				result =>

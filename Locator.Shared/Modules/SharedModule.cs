@@ -20,7 +20,7 @@ namespace Locator.Shared.Modules
 	{
 		#region Fields
 
-		private bool isWindows;
+		private bool _isWindows;
 
 		#endregion
 
@@ -28,7 +28,7 @@ namespace Locator.Shared.Modules
 
 		public SharedModule(bool isWindows)
 		{
-			isWindows = isWindows;
+			_isWindows = isWindows;
 		}
 
 		#endregion
@@ -37,7 +37,7 @@ namespace Locator.Shared.Modules
 
 		public void Register(ContainerBuilder builder)
 		{
-			HttpClientHandler clientHandler = isWindows ? new HttpClientHandler() : new NativeMessageHandler();
+			HttpClientHandler clientHandler = _isWindows ? new HttpClientHandler() : new NativeMessageHandler();
 			clientHandler.UseCookies = false;
 			clientHandler.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
 			builder.Register(cb => clientHandler).As<HttpClientHandler>().SingleInstance();
