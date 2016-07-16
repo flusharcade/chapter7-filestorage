@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MapPage.cs" company="Flush Arcade">
-//   Copyright (c) 2015 Flush Arcade All rights reserved.
+// <copyright file="MapPage.cs" company="Flush Arcade Pty Ltd.">
+//   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -17,21 +17,49 @@ namespace Locator.Pages
 	using Locator.Portable.ViewModels;
 	using Locator.Portable.Location;
 
+	/// <summary>
+	/// Map page.
+	/// </summary>
 	public partial class MapPage : ContentPage, INavigableXamarinFormsPage
 	{
+		#region Private Properties
+
+		/// <summary>
+		/// The view model.
+		/// </summary>
 		private MapPageViewModel _viewModel;
 
+		/// <summary>
+		/// The location update subscriptions.
+		/// </summary>
 		private IDisposable _locationUpdateSubscriptions;
 
+		/// <summary>
+		/// The closest subscriptions.
+		/// </summary>
 		private IDisposable _closestSubscriptions;
 
+		/// <summary>
+		/// The geocoder.
+		/// </summary>
 		private Geocoder geocoder;
 
+		#endregion
+
+		#region Constructors
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:Locator.Pages.MapPage"/> class.
+		/// </summary>
 		public MapPage ()
 		{
 			InitializeComponent ();
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:Locator.Pages.MapPage"/> class.
+		/// </summary>
+		/// <param name="model">Model.</param>
 		public MapPage (MapPageViewModel model)
 		{
 			_viewModel = model;
@@ -44,6 +72,16 @@ namespace Locator.Pages
 			geocoder = new Geocoder ();
 		}
 
+		#endregion
+
+		#region Private Methods
+
+		/// <summary>
+		/// Handles the disappearing.
+		/// </summary>
+		/// <returns>The disappearing.</returns>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">E.</param>
 		private void HandleDisappearing (object sender, EventArgs e)
 		{
 			_viewModel.OnDisppear ();
@@ -59,6 +97,12 @@ namespace Locator.Pages
 			}
 		}
 
+		/// <summary>
+		/// Handles the appearing.
+		/// </summary>
+		/// <returns>The appearing.</returns>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">E.</param>
 		private void HandleAppearing (object sender, EventArgs e)
 		{
 			_viewModel.OnAppear ();
@@ -67,6 +111,11 @@ namespace Locator.Pages
 			_closestSubscriptions = _viewModel.ClosestUpdates.Subscribe (ClosestChanged);
 		}
 
+		/// <summary>
+		/// Locations the changed.
+		/// </summary>
+		/// <returns>The changed.</returns>
+		/// <param name="position">Position.</param>
 		private void LocationChanged (IPosition position)
 		{
 			try 
@@ -92,6 +141,11 @@ namespace Locator.Pages
 			}
 		}
 
+		/// <summary>
+		/// Closests the changed.
+		/// </summary>
+		/// <returns>The changed.</returns>
+		/// <param name="position">Position.</param>
 		private void ClosestChanged (IPosition position)
 		{
 			try 
@@ -115,9 +169,20 @@ namespace Locator.Pages
 			}
 		}
 
+		#endregion
+
+		#region INavigableXamarinFormsPage interface
+
+		/// <summary>
+		/// Called when page is navigated to.
+		/// </summary>
+		/// <returns>The navigated to.</returns>
+		/// <param name="navigationParameters">Navigation parameters.</param>
 		public void OnNavigatedTo(IDictionary<string, object> navigationParameters)
 		{
 			this.Show(navigationParameters);
 		}
+
+		#endregion
 	}
 }

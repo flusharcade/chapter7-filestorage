@@ -6,7 +6,6 @@
 
 namespace Locator.Shared.Modules
 {
-	using System;
 	using System.Net;
 	using System.Net.Http;
 
@@ -16,16 +15,26 @@ namespace Locator.Shared.Modules
 
 	using Locator.Portable.Ioc;
 
+	/// <summary>
+	/// Shared module.
+	/// </summary>
 	public sealed class SharedModule : IModule
 	{
 		#region Fields
 
+		/// <summary>
+		/// The is windows.
+		/// </summary>
 		private bool _isWindows;
 
 		#endregion
 
 		#region Constructors and Destructors
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:Locator.Shared.Modules.SharedModule"/> class.
+		/// </summary>
+		/// <param name="isWindows">Is windows.</param>
 		public SharedModule(bool isWindows)
 		{
 			_isWindows = isWindows;
@@ -35,6 +44,10 @@ namespace Locator.Shared.Modules
 
 		#region Public Methods and Operators
 
+		/// <summary>
+		/// Register the specified builder.
+		/// </summary>
+		/// <param name="builder">Builder.</param>
 		public void Register(ContainerBuilder builder)
 		{
 			HttpClientHandler clientHandler = _isWindows ? new HttpClientHandler() : new NativeMessageHandler();

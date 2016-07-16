@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Locator.Portable.Repositories.GeocodingRepository.Contracts
+namespace Locator.Portable.Repositories.GeocodingWebServiceController.Contracts
 {
 	using System.Collections.Generic;
 

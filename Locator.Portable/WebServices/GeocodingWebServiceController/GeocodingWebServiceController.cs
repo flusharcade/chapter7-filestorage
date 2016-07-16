@@ -15,7 +15,7 @@ namespace Locator.Portable.Repositories.GeocodingRepository
 
 	using Newtonsoft.Json;
 
-	using Locator.Portable.Repositories.GeocodingRepository.Contracts;
+	using Locator.Portable.Repositories.GeocodingWebServiceController.Contracts;
 	using Locator.Portable.Resources;
 
 	/// <summary>
@@ -32,7 +32,7 @@ namespace Locator.Portable.Repositories.GeocodingRepository
 
 		#endregion
 
-		#region Constructors and Destructors
+		#region Constructors
 
 		public GeocodingWebServiceController(HttpClientHandler clientHandler)
 		{
@@ -41,8 +41,15 @@ namespace Locator.Portable.Repositories.GeocodingRepository
 
 		#endregion
 
-		#region Public Methods and Operators
+		#region Public Methods
 
+		/// <summary>
+		/// Gets the geocode from address async.
+		/// </summary>
+		/// <returns>The geocode from address async.</returns>
+		/// <param name="address">Address.</param>
+		/// <param name="city">City.</param>
+		/// <param name="state">State.</param>
 		public IObservable<GeocodingContract> GetGeocodeFromAddressAsync(string address, string city, string state)
 		{
 			var authClient = new HttpClient(_clientHandler);

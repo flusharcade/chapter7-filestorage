@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IOSModule.cs" company="Flush Arcade">
-//   Copyright (c) 2015 Flush Arcade All rights reserved.
+// <copyright file="IOSModule.cs" company="Flush Arcade Pty Ltd.">
+//   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -22,6 +22,8 @@ namespace Locator.Droid.Modules
 	/// </summary>
 	public class DroidModule : IModule
 	{
+		#region Public Methods
+
 		/// <summary>
 		/// Register the specified builer.
 		/// </summary>
@@ -31,5 +33,7 @@ namespace Locator.Droid.Modules
 			builer.RegisterType<GeolocatorDroid>().As<IGeolocator>().SingleInstance();
 			builer.RegisterType<DroidMethods>().As<IMethods>().SingleInstance();
 		}
+
+		#endregion
 	}
 }

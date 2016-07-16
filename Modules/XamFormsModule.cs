@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="XamFormsModule.cs" company="Flush Arcade">
-//   Copyright (c) 2015 Flush Arcade All rights reserved.
+// <copyright file="XamFormsModule.cs" company="Flush Arcade Pty Ltd.">
+//   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -23,6 +23,8 @@ namespace Locator.Modules
 	/// </summary>
 	public class XamFormsModule : IModule
 	{
+		#region Public Methods
+
 		/// <summary>
 		/// Register the specified builer.
 		/// </summary>
@@ -38,5 +40,7 @@ namespace Locator.Modules
 
 			builer.RegisterType<NavigationService> ().As<INavigationService>().SingleInstance();
 		}
+
+		#endregion
 	}
 }

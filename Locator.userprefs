@@ -1,16 +1,16 @@
 ﻿<Properties StartupItem="iOS/Locator.iOS.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/Location/GeolocatorDroid.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/packages.config">
     <Files>
-      <File FileName="packages.config" Line="10" Column="55" />
-      <File FileName="iOS/packages.config" Line="14" Column="55" />
-      <File FileName="Droid/packages.config" Line="22" Column="55" />
-      <File FileName="obj/Debug/Locator.Pages.MainPage.xaml.g.cs" Line="41" Column="31" />
-      <File FileName="obj/Debug/Locator.Pages.MapPage.xaml.g.cs" Line="41" Column="41" />
-      <File FileName="Droid/Location/GeolocatorDroid.cs" Line="20" Column="16" />
+      <File FileName="iOS/AppDelegate.cs" Line="1" Column="1" />
+      <File FileName="Pages/MainPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="Pages/MapPage.xaml.cs" Line="71" Column="4" />
+      <File FileName="Droid/packages.config" Line="12" Column="87" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <Breakpoint file="/Users/mww121/Desktop/FlushArcade/PACKT Publishing/Xamarin Blueprints/Chapters/Chapter 3/Locator/Pages/MapPage.xaml.cs" line="74" column="1" />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="../../Desktop/Development/Telstra/HealthConnex/MyCareManager/MyCareManager.Portable/Repositories/AccountRepository/AccountRepository.cs" line="214" offsetX="986" offsetY="3195" expression="this.webServiceUrl.AbsoluteUri" liveUpdate="False" />
     <Watch file="../../Desktop/Development/Telstra/HealthConnex/MyCareManager/MyCareManager.Portable/Repositories/TargetRangeRepository/TargetRangeRepository.cs" line="107" offsetX="950" offsetY="1590" expression="message.RequestUri" liveUpdate="False" />

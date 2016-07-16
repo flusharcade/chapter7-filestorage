@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MainActivity.cs" company="Flush Arcade">
-//   Copyright (c) 2015 Flush Arcade All rights reserved.
+// <copyright file="MainActivity.cs" company="Flush Arcade Pty Ltd.">
+//   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -19,9 +19,19 @@ namespace Locator.Droid
 	using Locator.Portable.Modules;
 	using Locator.Portable.Ioc;
 
+	/// <summary>
+	/// Main activity.
+	/// </summary>
 	[Activity (Label = "Locator.Droid", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
 	{
+		#region Protected Methods
+
+		/// <summary>
+		/// Called when the activity is created.
+		/// </summary>
+		/// <returns>The create.</returns>
+		/// <param name="bundle">Bundle.</param>
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate(bundle);
@@ -34,6 +44,14 @@ namespace Locator.Droid
 			LoadApplication (new App ());
 		}
 
+		#endregion
+
+		#region Private Methods
+
+		/// <summary>
+		/// Inits the IoC container and modules.
+		/// </summary>
+		/// <returns>The io c.</returns>
 		private void InitIoC()
 		{
 			IoC.CreateContainer ();
@@ -43,5 +61,7 @@ namespace Locator.Droid
 			IoC.RegisterModule (new PortableModule());
 			IoC.StartContainer ();
 		}
+
+		#endregion
 	}
 }

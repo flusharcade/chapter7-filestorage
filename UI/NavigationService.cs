@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NavigationService.cs" company="Flush Arcade">
-//   Copyright (c) 2015 Flush Arcade All rights reserved.
+// <copyright file="NavigationService.cs" company="Flush Arcade Pty Ltd.">
+//   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -17,10 +17,18 @@ namespace Locator.UI
 	using Locator.Portable.Enums;
 	using Locator.Portable.Ioc;
 
+	/// <summary>
+	/// Navigation service.
+	/// </summary>
 	public class NavigationService : INavigationService
 	{
 		#region INavigationService implementation
 
+		/// <summary>
+		/// Navigate the specified pageName and navigationParameters.
+		/// </summary>
+		/// <param name="pageName">Page name.</param>
+		/// <param name="navigationParameters">Navigation parameters.</param>
 		public async Task Navigate (PageNames pageName, IDictionary<string, object> navigationParameters)
 		{
 			var page = GetPage (pageName);
@@ -39,6 +47,11 @@ namespace Locator.UI
 
 		#endregion
 
+		/// <summary>
+		/// Gets the page.
+		/// </summary>
+		/// <returns>The page.</returns>
+		/// <param name="page">Page.</param>
 		private Page GetPage(PageNames page)
 		{
 			switch(page)
@@ -53,4 +66,3 @@ namespace Locator.UI
 		}
 	}
 }
-

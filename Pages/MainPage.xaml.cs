@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MainPage.cs" company="Flush Arcade">
-//   Copyright (c) 2015 Flush Arcade All rights reserved.
+// <copyright file="MainPage.cs" company="Flush Arcade Pty Ltd.">
+//   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -20,10 +20,7 @@ namespace Locator.Pages
 	/// </summary>
 	public partial class MainPage : ContentPage, INavigableXamarinFormsPage 
 	{
-		/// <summary>
-		/// The view model.
-		/// </summary>
-		private MainPageViewModel _viewModel;
+		#region Constructors
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:Locator.Pages.MainPage"/> class.
@@ -43,8 +40,12 @@ namespace Locator.Pages
 			InitializeComponent ();
 		}
 
+		#endregion
+
+		#region INavigableXamarinFormsPage interface
+
 		/// <summary>
-		/// Called when page navigated to.
+		/// Called when page is navigated to.
 		/// </summary>
 		/// <returns>The navigated to.</returns>
 		/// <param name="navigationParameters">Navigation parameters.</param>
@@ -52,5 +53,7 @@ namespace Locator.Pages
 		{
 			this.Show (navigationParameters);
 		}
+
+		#endregion
 	}
 }

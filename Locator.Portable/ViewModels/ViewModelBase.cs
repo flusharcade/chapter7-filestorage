@@ -1,5 +1,5 @@
-﻿// <copyright file="ViewModelBase.cs" company="Flush Arcade">
-//   Copyright (c) 2015 Flush Arcade All rights reserved.
+﻿// <copyright file="ViewModelBase.cs" company="Flush Arcade Pty Ltd.">
+//   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -30,12 +30,19 @@ namespace Locator.Portable.ViewModels
 
 		#region 
 
+		/// <summary>
+		/// The navigation.
+		/// </summary>
 		public INavigationService Navigation;
 
 		#endregion
 
 		#region Constructors
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:Locator.Portable.ViewModels.ViewModelBase"/> class.
+		/// </summary>
+		/// <param name="navigation">Navigation.</param>
 		public ViewModelBase(INavigationService navigation)
 		{
 			Navigation = navigation;
@@ -43,7 +50,7 @@ namespace Locator.Portable.ViewModels
 
 		#endregion
 
-		#region Methods
+		#region Protected Methods
 
 		/// <summary>
 		/// Raises the property changed event.
@@ -60,6 +67,19 @@ namespace Locator.Portable.ViewModels
 		}
 
 		/// <summary>
+		/// Loads the async.
+		/// </summary>
+		/// <returns>The async.</returns>
+		/// <param name="parameters">Parameters.</param>
+		protected virtual async Task LoadAsync(IDictionary<string, object> parameters)
+		{
+		}
+
+		#endregion
+
+		#region Public Methods
+
+		/// <summary>
 		/// </summary>
 		/// <param name="parameters">
 		/// </param>
@@ -74,10 +94,6 @@ namespace Locator.Portable.ViewModels
 				{
 					// we can handle any areas from the load async function
 				});
-		}
-
-		protected virtual async Task LoadAsync(IDictionary<string, object> parameters)
-		{
 		}
 
 		#endregion

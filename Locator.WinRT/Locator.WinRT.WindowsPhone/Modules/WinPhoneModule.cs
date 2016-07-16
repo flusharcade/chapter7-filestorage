@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="WinPhoneModule.cs" company="Flush Arcade">
-//   Copyright (c) 2015 Flush Arcade All rights reserved.
+// <copyright file="WinPhoneModule.cs" company="Flush Arcade Pty Ltd.">
+//   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -20,8 +20,15 @@ namespace Locator.WinPhone.Modules
     using Locator.Portable.Extras;
     using Locator.Portable.Ioc;
 
+	/// <summary>
+	/// Windows phone module.
+	/// </summary>
     public class WinPhoneModule : IModule
     {
+		/// <summary>
+		/// Register the specified builer.
+		/// </summary>
+		/// <param name="builer">Builer.</param>
         public void Register(ContainerBuilder builer)
         {
             builer.RegisterType<GeolocatorWinPhone>().As<IGeolocator>().SingleInstance();

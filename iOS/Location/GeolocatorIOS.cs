@@ -15,12 +15,35 @@ namespace Locator.iOS.Location
 
 	using Locator.Portable.Location;
 
+	/// <summary>
+	/// Geolocator ios.
+	/// </summary>
 	public class GeolocatorIOS : IGeolocator
 	{
+		#region Public Properties
+
+		/// <summary>
+		/// Gets or sets the positions.
+		/// </summary>
+		/// <value>The positions.</value>
 		public Subject<IPosition> Positions { get; set; }
 
+		#endregion
+
+		#region Private Properties
+
+		/// <summary>
+		/// The location manager.
+		/// </summary>
 		private CLLocationManager locationManager;
 
+		#endregion
+
+		#region Constructors
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:Locator.iOS.Location.GeolocatorIOS"/> class.
+		/// </summary>
 		public GeolocatorIOS()
 		{
 			Positions = new Subject<IPosition> ();
@@ -39,6 +62,37 @@ namespace Locator.iOS.Location
 				locationManager.AllowsBackgroundLocationUpdates = true;
 			}
 		}
+
+		#endregion
+
+		#region Public Methods
+
+		/// <summary>
+		/// Start this instance.
+		/// </summary>
+		public void Start()
+		{
+			if (CLLocationManager.LocationServicesEnabled)
+			{
+				//set the desired accuracy, in meters
+				locationManager.DesiredAccuracy = 1;
+				locationManager.LocationsUpdated += handleLocationsUpdated;
+				locationManager.StartUpdatingLocation();
+			}
+		}
+
+		/// <summary>
+		/// Stop this instance.
+		/// </summary>
+		public void Stop()
+		{
+			locationManager.LocationsUpdated -= handleLocationsUpdated;
+			locationManager.StopUpdatingLocation();
+		}
+
+		#endregion
+
+		#region Private Methods
 
 		/// <summary>
 		/// Handles the locations updated.
@@ -62,27 +116,6 @@ namespace Locator.iOS.Location
 			}
 		}
 
-		/// <summary>
-		/// Start this instance.
-		/// </summary>
-		public void Start()
-		{
-			if (CLLocationManager.LocationServicesEnabled) 
-			{
-				//set the desired accuracy, in meters
-				locationManager.DesiredAccuracy = 1;
-				locationManager.LocationsUpdated += handleLocationsUpdated;
-				locationManager.StartUpdatingLocation();
-			}
-		}
-
-		/// <summary>
-		/// Stop this instance.
-		/// </summary>
-		public void Stop()
-		{
-			locationManager.LocationsUpdated -= handleLocationsUpdated;
-			locationManager.StopUpdatingLocation();
-		}
+		#endregion
 	}
 }

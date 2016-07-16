@@ -16,10 +16,20 @@ namespace Locator.WinPhone.Location
 
     public class GeolocatorWinPhone : IGeolocator
     {
+		/// <summary>
+		/// Gets or sets the positions.
+		/// </summary>
+		/// <value>The positions.</value>
         public Subject<IPosition> Positions { get; set; }
 
+		/// <summary>
+		/// The windows geolocator.
+		/// </summary>
         private Geolocator _geolocator;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:Locator.WinPhone.Location.GeolocatorIOS"/> class.
+		/// </summary>
         public GeolocatorWinPhone()
         {
             Positions = new Subject<IPosition>();
