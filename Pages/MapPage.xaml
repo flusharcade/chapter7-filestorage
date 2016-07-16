@@ -24,12 +24,28 @@
 
 			<Label x:Name="AddressLabel" Text="{Binding Address}" TextColor="Black" Grid.Row="1" Grid.Column="0"/>
 
-			<Button x:Name="GeolocationButton" Text="{Binding GeolocationButtonTitle}" 
-				Command="{Binding GeolocationCommand}" Grid.Row="2" Grid.Column="0"/>
+			<Button x:Name="GeolocationButton" Text="{Binding GeolocationButtonTitle}" BackgroundColor="Silver"
+				Command="{Binding GeolocationCommand}" Grid.Row="2" Grid.Column="0">
+        <Button.TextColor>
+          <OnPlatform x:TypeArguments="Color"
+              Android="Navy"
+              WinPhone="Blue"
+              iOS="Black">
+          </OnPlatform>
+        </Button.TextColor>
+      </Button>
 
-			<Button x:Name="NearestAddressButton" Text="Find Nearest Address" 
-				Command="{Binding NearestAddressCommand}" Grid.Row="3" Grid.Column="0"/>
-		</Grid>
+      <Button x:Name="NearestAddressButton" Text="Find Nearest Address" BackgroundColor="Silver"
+				Command="{Binding NearestAddressCommand}" Grid.Row="3" Grid.Column="0">
+        <Button.TextColor>
+          <OnPlatform x:TypeArguments="Color"
+              Android="Navy"
+              WinPhone="Blue"
+              iOS="Black">
+          </OnPlatform>
+        </Button.TextColor>
+      </Button>
+    </Grid>
 
 	</ContentPage.Content>
 
