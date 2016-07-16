@@ -23,7 +23,7 @@ namespace Locator.Pages
 		/// <summary>
 		/// The view model.
 		/// </summary>
-		private MainPageViewModel viewModel;
+		private MainPageViewModel _viewModel;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:Locator.Pages.MainPage"/> class.

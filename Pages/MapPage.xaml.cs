@@ -19,11 +19,11 @@ namespace Locator.Pages
 
 	public partial class MapPage : ContentPage, INavigableXamarinFormsPage
 	{
-		private MapPageViewModel viewModel;
+		private MapPageViewModel _viewModel;
 
-		private IDisposable locationUpdateSubscriptions;
+		private IDisposable _locationUpdateSubscriptions;
 
-		private IDisposable closestSubscriptions;
+		private IDisposable _closestSubscriptions;
 
 		private Geocoder geocoder;
 
@@ -34,7 +34,7 @@ namespace Locator.Pages
 
 		public MapPage (MapPageViewModel model)
 		{
-			viewModel = model;
+			_viewModel = model;
 			BindingContext = model;
 			InitializeComponent ();
 
@@ -46,25 +46,25 @@ namespace Locator.Pages
 
 		private void HandleDisappearing (object sender, EventArgs e)
 		{
-			viewModel.OnDisppear ();
+			_viewModel.OnDisppear ();
 
-			if (locationUpdateSubscriptions != null) 
+			if (_locationUpdateSubscriptions != null) 
 			{
-				locationUpdateSubscriptions.Dispose ();
+				_locationUpdateSubscriptions.Dispose ();
 			}
 
-			if (closestSubscriptions != null) 
+			if (_closestSubscriptions != null) 
 			{
-				closestSubscriptions.Dispose ();
+				_closestSubscriptions.Dispose ();
 			}
 		}
 
 		private void HandleAppearing (object sender, EventArgs e)
 		{
-			viewModel.OnAppear ();
+			_viewModel.OnAppear ();
 
-			locationUpdateSubscriptions = viewModel.LocationUpdates.Subscribe (LocationChanged);
-			closestSubscriptions = viewModel.ClosestUpdates.Subscribe (ClosestChanged);
+			_locationUpdateSubscriptions = _viewModel.LocationUpdates.Subscribe (LocationChanged);
+			_closestSubscriptions = _viewModel.ClosestUpdates.Subscribe (ClosestChanged);
 		}
 
 		private void LocationChanged (IPosition position)
@@ -79,7 +79,7 @@ namespace Locator.Pages
 							var mostRecent = _.Result.FirstOrDefault();
 							if (mostRecent != null)
 							{
-								viewModel.Address = mostRecent;
+								_viewModel.Address = mostRecent;
 							}
 						})
 				        .ConfigureAwait(false);

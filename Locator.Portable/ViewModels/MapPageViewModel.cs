@@ -202,7 +202,7 @@ namespace Locator.Portable.ViewModels
 
 		#region Private Methods
 
-		public async Task getGeocodeFromAddress(string address, string city, string state)
+		public async Task GetGeocodeFromAddress(string address, string city, string state)
 		{
 			var geoContract = await _geocodingWebServiceController.GetGeocodeFromAddressAsync(address, city, state);
 
@@ -230,17 +230,17 @@ namespace Locator.Portable.ViewModels
 			}
 		}
 
-		private double degreesToRadians(double deg) 
+		private double DegreesToRadians(double deg) 
 		{
 			return deg * Math.PI / 180;
 		}
 
-		private double pythagorasEquirectangular(double lat1, double lon1, double lat2, double lon2)
+		private double PythagorasEquirectangular(double lat1, double lon1, double lat2, double lon2)
 		{
-			lat1 = degreesToRadians(lat1);
-			lat2 = degreesToRadians(lat2);
-			lon1 = degreesToRadians(lon1);
-			lon2 = degreesToRadians(lon2);
+			lat1 = DegreesToRadians(lat1);
+			lat2 = DegreesToRadians(lat2);
+			lon1 = DegreesToRadians(lon1);
+			lon2 = DegreesToRadians(lon2);
 
 			// within a 5km radius
 			var radius = 5;
@@ -272,7 +272,7 @@ namespace Locator.Portable.ViewModels
 			{
 				foreach (var position in _positions)
 				{
-					var difference = pythagorasEquirectangular(_currentPosition.Latitude, _currentPosition.Longitude,
+					var difference = PythagorasEquirectangular(_currentPosition.Latitude, _currentPosition.Longitude,
 						position.Latitude, position.Longitude);
 
 					if (difference < mindif)
@@ -327,7 +327,7 @@ namespace Locator.Portable.ViewModels
 				var array = _addresses [index];
 				index++;
 
-				getGeocodeFromAddress(array[0], array[1], array[2]).ConfigureAwait(false);
+				GetGeocodeFromAddress(array[0], array[1], array[2]).ConfigureAwait(false);
 			}
 		}
 

@@ -32,11 +32,11 @@ namespace Locator.WinPhone
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             InitIoC();
 
-            this.NavigationCacheMode = NavigationCacheMode.Required;
+            NavigationCacheMode = NavigationCacheMode.Required;
             LoadApplication(new Locator.App());
         }
 

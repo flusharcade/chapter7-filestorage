@@ -1,9 +1,16 @@
-﻿<Properties StartupItem="Droid/Locator.Droid.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workbench />
+﻿<Properties StartupItem="iOS/Locator.iOS.csproj" RefactoringSettings.EnableRefactorings="True">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/Location/GeolocatorDroid.cs">
+    <Files>
+      <File FileName="packages.config" Line="10" Column="55" />
+      <File FileName="iOS/packages.config" Line="14" Column="55" />
+      <File FileName="Droid/packages.config" Line="22" Column="55" />
+      <File FileName="obj/Debug/Locator.Pages.MainPage.xaml.g.cs" Line="41" Column="31" />
+      <File FileName="obj/Debug/Locator.Pages.MapPage.xaml.g.cs" Line="41" Column="41" />
+      <File FileName="Droid/Location/GeolocatorDroid.cs" Line="20" Column="16" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="../../Desktop/Development/Telstra/HealthConnex/MyCareManager/MyCareManager.Portable/Repositories/AccountRepository/AccountRepository.cs" line="214" offsetX="986" offsetY="3195" expression="this.webServiceUrl.AbsoluteUri" liveUpdate="False" />
     <Watch file="../../Desktop/Development/Telstra/HealthConnex/MyCareManager/MyCareManager.Portable/Repositories/TargetRangeRepository/TargetRangeRepository.cs" line="107" offsetX="950" offsetY="1590" expression="message.RequestUri" liveUpdate="False" />
@@ -12,6 +19,6 @@
     <Watch file="../../Desktop/Development/Telstra/HealthConnex/MyCareManager/MyCareManager.Portable/Repositories/ReminderRepository/ReminderRepository.cs" line="115" offsetX="972" offsetY="1710" expression="message.RequestUri" liveUpdate="False" />
     <Watch file="../../Desktop/Development/Telstra/HealthConnex/MyCareManager/MyCareManager.Portable/Repositories/SettingsRepository/SettingsRepository.cs" line="98" offsetX="676" offsetY="1455" expression="settingsUri" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
-  <MonoDevelop.Ide.ItemProperties.Locator.Droid PreferredExecutionTarget="Android.192.168.58.101:5555" />
+  <MonoDevelop.Ide.ItemProperties.Locator.Droid PreferredExecutionTarget="Android.Android-Emulator" />
   <MonoDevelop.Ide.ItemProperties.Locator.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.A10AC0B6-78D2-48A4-92EF-01D011AFA406" />
 </Properties>
