@@ -4,13 +4,13 @@
 //  </copyright>
 // --------------------------------------------------------------------------------------------------
 
-namespace Locator.UI
+namespace FileStorage.UI
 {
 	using System.Collections.Generic;
 
 	using Xamarin.Forms;
 
-	using Locator.Portable.ViewModels;
+	using FileStorage.Portable.ViewModels;
 
 	/// <summary>
 	/// Xamarin navigation extensions.

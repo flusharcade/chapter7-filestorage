@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Locator.iOS
+namespace FileStorage.iOS
 {
 	public class Application
 	{

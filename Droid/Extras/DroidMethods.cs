@@ -4,9 +4,9 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Locator.Droid.Extras
+namespace FileStorage.Droid.Extras
 {
-	using Locator.Portable.Extras;
+	using FileStorage.Portable.Extras;
 
 	/// <summary>
 	/// The android methods interface

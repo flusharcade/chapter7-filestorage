@@ -4,25 +4,25 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Locator.Droid
+namespace FileStorage.Droid
 {
 	using Android.App;
 	using Android.Content.PM;
 	using Android.OS;
 
-	using Locator.Droid.Modules;
+	using FileStorage.Droid.Modules;
 
-	using Locator.Shared.Modules;
+	//using FileStorage.Shared.Modules;
 
-	using Locator.Modules;
+	using FileStorage.Modules;
 
-	using Locator.Portable.Modules;
-	using Locator.Portable.Ioc;
+	using FileStorage.Portable.Modules;
+	using FileStorage.Portable.Ioc;
 
 	/// <summary>
 	/// Main activity.
 	/// </summary>
-	[Activity (Label = "Locator.Droid", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	[Activity (Label = "FileStorage.Droid", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
 	{
 		#region Protected Methods
@@ -56,7 +56,7 @@ namespace Locator.Droid
 		{
 			IoC.CreateContainer ();
 			IoC.RegisterModule (new DroidModule());
-			IoC.RegisterModule (new SharedModule(false));
+			//IoC.RegisterModule (new SharedModule(false));
 			IoC.RegisterModule (new XamFormsModule());
 			IoC.RegisterModule (new PortableModule());
 			IoC.StartContainer ();

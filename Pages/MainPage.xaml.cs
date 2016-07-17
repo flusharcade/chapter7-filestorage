@@ -4,16 +4,16 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Locator.Pages
+namespace FileStorage.Pages
 {
 	using System;
 	using System.Collections.Generic;
 
 	using Xamarin.Forms;
 
-	using Locator.Portable.ViewModels;
-	using Locator.Portable.Ioc;
-	using Locator.UI;
+	using FileStorage.Portable.ViewModels;
+	using FileStorage.Portable.Ioc;
+	using FileStorage.UI;
 
 	/// <summary>
 	/// Main page.
@@ -23,7 +23,7 @@ namespace Locator.Pages
 		#region Constructors
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="T:Locator.Pages.MainPage"/> class.
+		/// Initializes a new instance of the <see cref="T:FileStorage.Pages.MainPage"/> class.
 		/// </summary>
 		public MainPage ()
 		{
@@ -31,7 +31,7 @@ namespace Locator.Pages
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="T:Locator.Pages.MainPage"/> class.
+		/// Initializes a new instance of the <see cref="T:FileStorage.Pages.MainPage"/> class.
 		/// </summary>
 		/// <param name="model">Model.</param>
 		public MainPage (MainPageViewModel model)

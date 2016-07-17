@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Locator.UI
+namespace FileStorage.UI
 {
 	using System.Collections.Generic;
 

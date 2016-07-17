@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Locator.Modules
+namespace FileStorage.Modules
 {
 	using System.Windows.Input;
 
@@ -12,11 +12,11 @@ namespace Locator.Modules
 
 	using Xamarin.Forms;
 
-	using Locator.Portable.Ioc;
-	using Locator.Pages;
-	using Locator.UI;
+	using FileStorage.Portable.Ioc;
+	using FileStorage.Pages;
+	using FileStorage.UI;
 
-	using Locator.Portable.UI;
+	using FileStorage.Portable.UI;
 
 	/// <summary>
 	/// Xamarin forms module.
@@ -32,7 +32,7 @@ namespace Locator.Modules
 		public void Register(ContainerBuilder builer)
 		{
 			builer.RegisterType<MainPage> ().SingleInstance();
-			builer.RegisterType<MapPage> ().SingleInstance();
+			builer.RegisterType<FilesPage> ().SingleInstance();
 
 			builer.RegisterType<Command> ().As<ICommand>().InstancePerDependency();
 

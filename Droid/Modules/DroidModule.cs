@@ -4,18 +4,18 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Locator.Droid.Modules
+namespace FileStorage.Droid.Modules
 {
-	using Locator.Portable.Ioc;
+	using FileStorage.Portable.Ioc;
 
 	using Autofac;
 
-	using Locator.Droid.Location;
-	using Locator.Droid.Extras;
+	using FileStorage.Droid.Location;
+	using FileStorage.Droid.Extras;
 
-	using Locator.Portable.Extras;
+	using FileStorage.Portable.Extras;
 
-	using Locator.Portable.Location;
+	using FileStorage.Portable.Location;
 
 	/// <summary>
 	/// Droid module.
@@ -30,7 +30,7 @@ namespace Locator.Droid.Modules
 		/// <param name="builer">Builer.</param>
 		public void Register(ContainerBuilder builer)
 		{
-			builer.RegisterType<GeolocatorDroid>().As<IGeolocator>().SingleInstance();
+			builer.RegisterType<GeoFileStorageDroid>().As<IGeoFileStorage>().SingleInstance();
 			builer.RegisterType<DroidMethods>().As<IMethods>().SingleInstance();
 		}
 

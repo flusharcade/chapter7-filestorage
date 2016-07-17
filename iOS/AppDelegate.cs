@@ -4,19 +4,19 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Locator.iOS
+namespace FileStorage.iOS
 {
 	using Foundation;
 	using UIKit;
 
-	using Locator.iOS.Modules;
+	using FileStorage.iOS.Modules;
 
-	using Locator.Shared.Modules;
+	//using FileStorage.Shared.Modules;
 
-	using Locator.Modules;
+	using FileStorage.Modules;
 
-	using Locator.Portable.Ioc;
-	using Locator.Portable.Modules;
+	using FileStorage.Portable.Ioc;
+	using FileStorage.Portable.Modules;
 
 	/// <summary>
 	/// App delegate.
@@ -34,7 +34,6 @@ namespace Locator.iOS
 		/// <param name="options">Options.</param>
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			global::Xamarin.FormsMaps.Init();
 			global::Xamarin.Forms.Forms.Init ();
 
 			InitIoC ();
@@ -56,7 +55,7 @@ namespace Locator.iOS
 		{
 			IoC.CreateContainer ();
 			IoC.RegisterModule (new IOSModule());
-			IoC.RegisterModule (new SharedModule(false));
+			//IoC.RegisterModule (new SharedModule(false));
 			IoC.RegisterModule (new XamFormsModule());
 			IoC.RegisterModule (new PortableModule());
 			IoC.StartContainer ();

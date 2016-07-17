@@ -4,18 +4,18 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Locator.UI
+namespace FileStorage.UI
 {
 	using System.Threading.Tasks;
 	using System.Collections.Generic;
 
 	using Xamarin.Forms;
 
-	using Locator.Pages;
+	using FileStorage.Pages;
 
-	using Locator.Portable.UI;
-	using Locator.Portable.Enums;
-	using Locator.Portable.Ioc;
+	using FileStorage.Portable.UI;
+	using FileStorage.Portable.Enums;
+	using FileStorage.Portable.Ioc;
 
 	/// <summary>
 	/// Navigation service.
@@ -58,8 +58,8 @@ namespace Locator.UI
 			{
 				case PageNames.MainPage:
 					return IoC.Resolve<MainPage> ();
-				case PageNames.MapPage:
-					return IoC.Resolve<MapPage> ();
+				case PageNames.FilesPage:
+					return IoC.Resolve<FilesPage> ();
 				default:
 					return null;
 			}

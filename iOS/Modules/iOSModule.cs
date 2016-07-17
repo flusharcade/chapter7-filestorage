@@ -4,16 +4,14 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Locator.iOS.Modules
+namespace FileStorage.iOS.Modules
 {
 	using Autofac;
 
-	using Locator.iOS.Location;
-	using Locator.iOS.Extras;
+	using FileStorage.iOS.Extras;
 
-	using Locator.Portable.Extras;
-	using Locator.Portable.Ioc;
-	using Locator.Portable.Location;
+	using FileStorage.Portable.Extras;
+	using FileStorage.Portable.Ioc;
 
 	/// <summary>
 	/// IOS Module.
@@ -28,7 +26,6 @@ namespace Locator.iOS.Modules
 		/// <param name="builer">Builer.</param>
 		public void Register(ContainerBuilder builer)
 		{
-			builer.RegisterType<GeolocatorIOS>().As<IGeolocator>().SingleInstance();
 			builer.RegisterType<IOSMethods>().As<IMethods>().SingleInstance();
 		}
 

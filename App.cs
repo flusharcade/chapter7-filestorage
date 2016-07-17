@@ -4,11 +4,11 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Locator
+namespace FileStorage
 {
 	using Xamarin.Forms;
 
-	using Locator.Portable.Ioc;
+	using FileStorage.Portable.Ioc;
 
 	/// <summary>
 	/// App.
@@ -18,7 +18,7 @@ namespace Locator
 		#region Constructors
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="T:Locator.App"/> class.
+		/// Initializes a new instance of the <see cref="T:FileStorage.App"/> class.
 		/// </summary>
 		public App ()
 		{

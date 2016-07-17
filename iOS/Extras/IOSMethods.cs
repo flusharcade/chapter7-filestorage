@@ -4,11 +4,11 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Locator.iOS.Extras
+namespace FileStorage.iOS.Extras
 {
 	using UIKit;
 
-	using Locator.Portable.Extras;
+	using FileStorage.Portable.Extras;
 
 	/// <summary>
 	/// The methods interface
