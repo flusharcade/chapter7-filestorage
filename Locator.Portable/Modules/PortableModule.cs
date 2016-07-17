@@ -15,7 +15,7 @@ namespace Locator.Portable.Modules
 	using Locator.Portable.UI;
 	using Locator.Portable.Location;
 
-	using Locator.Portable.Repositories.GeocodingRepository;
+	using Locator.Portable.WebServices.GeocodingWebServiceController;
 
 	/// <summary>
 	/// Portable module.

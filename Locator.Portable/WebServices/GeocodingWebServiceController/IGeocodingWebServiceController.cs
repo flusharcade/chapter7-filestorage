@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Locator.Portable.Repositories.GeocodingRepository
+namespace Locator.Portable.WebServices.GeocodingWebServiceController
 {
 	using System;
 

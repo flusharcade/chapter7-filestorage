@@ -16,7 +16,7 @@ namespace Locator.Portable.ViewModels
 
 	using Locator.Portable.UI;
 	using Locator.Portable.Location;
-	using Locator.Portable.Repositories.GeocodingRepository;
+	using Locator.Portable.WebServices.GeocodingWebServiceController;
 
 	/// <summary>
 	/// Map page view model.
