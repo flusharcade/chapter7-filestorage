@@ -34,9 +34,6 @@ namespace Locator.WinPhone
 	/// </summary>
     public sealed partial class MainPage : Xamarin.Forms.Platform.WinRT.WindowsPhonePage
     {
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:Locator.WinRT.WinPhone.MainPage"/> class.
-		/// </summary>
         public MainPage()
         {
             this.InitializeComponent();
@@ -47,9 +44,6 @@ namespace Locator.WinPhone
             LoadApplication(new Locator.App());
         }
 
-		/// <summary>
-		/// Initializes the IoC container and modules.
-		/// </summary>
         private void InitIoC()
         {
             IoC.CreateContainer();

@@ -8,8 +8,4 @@
     xmlns:forms="using:Xamarin.Forms.Platform.WinRT"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid>
-
-    </Grid>
 </forms:WindowsPhonePage>
