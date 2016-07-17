@@ -246,12 +246,12 @@ namespace Locator.Portable.ViewModels
 		/// <param name="navigation">Navigation.</param>
 		/// <param name="geolocator">Geolocator.</param>
 		/// <param name="commandFactory">Command factory.</param>
-		/// <param name="geocodingRepository">Geocoding repository.</param>
+		/// <param name="geocodingWebServiceController">Geocoding repository.</param>
 		public MapPageViewModel (INavigationService navigation, IGeolocator geolocator, Func<Action, ICommand> commandFactory, 
-			IGeocodingWebServiceController geocodingRepository) : base (navigation)
+			IGeocodingWebServiceController geocodingWebServiceController) : base (navigation)
 		{
 			_geolocator = geolocator;
-			_geocodingWebServiceController = geocodingRepository;
+			_geocodingWebServiceController = geocodingWebServiceController;
 
 			_nearestAddressCommand = commandFactory(() => FindNearestSite());
 			_geolocationCommand = commandFactory(() =>
