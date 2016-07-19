@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FilesPage.cs" company="Flush Arcade Pty Ltd.">
+// <copyright file="EditFilePage.cs" company="Flush Arcade Pty Ltd.">
 //   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -17,14 +17,14 @@ namespace FileStorage.Pages
 	/// <summary>
 	/// Map page.
 	/// </summary>
-	public partial class FilesPage : ExtendedContentPage, INavigableXamarinFormsPage
+	public partial class EditFilePage : ExtendedContentPage, INavigableXamarinFormsPage
 	{
 		#region Private Properties
 
 		/// <summary>
 		/// The view model.
 		/// </summary>
-		private FilesPageViewModel _viewModel;
+		private EditFilePageViewModel _viewModel;
 
 		#endregion
 
@@ -34,11 +34,11 @@ namespace FileStorage.Pages
 		/// Initializes a new instance of the <see cref="T:FileStorage.Pages.MapPage"/> class.
 		/// </summary>
 		/// <param name="model">Model.</param>
-		public FilesPage (FilesPageViewModel model) : base(model)
+		public EditFilePage(EditFilePageViewModel model) : base(model)
 		{
 			_viewModel = model;
 			BindingContext = model;
-			InitializeComponent ();
+			InitializeComponent();
 
 			Appearing += HandleAppearing;
 			Disappearing += HandleDisappearing;
@@ -54,9 +54,9 @@ namespace FileStorage.Pages
 		/// <returns>The disappearing.</returns>
 		/// <param name="sender">Sender.</param>
 		/// <param name="e">E.</param>
-		private void HandleDisappearing (object sender, EventArgs e)
+		private void HandleDisappearing(object sender, EventArgs e)
 		{
-			_viewModel.OnDisppear ();
+			_viewModel.OnDisppear();
 		}
 
 		/// <summary>
@@ -65,9 +65,9 @@ namespace FileStorage.Pages
 		/// <returns>The appearing.</returns>
 		/// <param name="sender">Sender.</param>
 		/// <param name="e">E.</param>
-		private void HandleAppearing (object sender, EventArgs e)
+		private void HandleAppearing(object sender, EventArgs e)
 		{
-			_viewModel.OnAppear ();
+			_viewModel.OnAppear();
 		}
 
 		#endregion

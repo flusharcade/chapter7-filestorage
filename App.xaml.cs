@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+[assembly: Xamarin.Forms.Xaml.XamlCompilation(Xamarin.Forms.Xaml.XamlCompilationOptions.Compile)]
+
 namespace FileStorage
 {
 	using Xamarin.Forms;
@@ -11,18 +13,26 @@ namespace FileStorage
 	using FileStorage.Portable.Ioc;
 
 	/// <summary>
-	/// App.
+	/// The App.
 	/// </summary>
-	public class App : Application
+	public partial class App : Application
 	{
 		#region Constructors
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:FileStorage.App"/> class.
 		/// </summary>
-		public App ()
+		public App()
 		{
-			MainPage = IoC.Resolve<NavigationPage> ();
+			InitializeComponent();
+
+			// The Application ResourceDictionary is available in Xamarin.Forms 1.3 and later
+			if (Current.Resources == null)
+			{
+				Current.Resources = new ResourceDictionary();
+			}
+
+			MainPage = IoC.Resolve<NavigationPage>();
 		}
 
 		#endregion
@@ -30,28 +40,28 @@ namespace FileStorage
 		#region Protected Methods
 
 		/// <summary>
-		/// Called when app is started.
+		/// Override the starting function
 		/// </summary>
 		/// <returns>The start.</returns>
-		protected override void OnStart ()
+		protected override void OnStart()
 		{
 			// Handle when your app starts
 		}
 
 		/// <summary>
-		/// Called when app is background.
+		/// Override the OnSleep function
 		/// </summary>
 		/// <returns>The sleep.</returns>
-		protected override void OnSleep ()
+		protected override void OnSleep()
 		{
 			// Handle when your app sleeps
 		}
 
 		/// <summary>
-		/// Called when app is foreground.
+		/// Overrides the OnResume function
 		/// </summary>
 		/// <returns>The resume.</returns>
-		protected override void OnResume ()
+		protected override void OnResume()
 		{
 			// Handle when your app resumes
 		}

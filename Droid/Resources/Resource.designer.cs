@@ -28,6 +28,8 @@ namespace FileStorage.Droid
 		{
 			global::ModernHttpClient.Resource.String.library_name = global::FileStorage.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::FileStorage.Droid.Resource.Attribute.actionBarSize;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::FileStorage.Droid.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::FileStorage.Droid.Resource.String.Hello;
 		}
 		
 		public partial class Animation
@@ -2649,6 +2651,12 @@ namespace FileStorage.Droid
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f050041
+			public const int ApplicationName = 2131034177;
+			
+			// aapt resource value: 0x7f050040
+			public const int Hello = 2131034176;
+			
 			// aapt resource value: 0x7f05002e
 			public const int abc_action_bar_home_description = 2131034158;
 			
@@ -2805,8 +2813,8 @@ namespace FileStorage.Droid
 			// aapt resource value: 0x7f05001d
 			public const int common_signin_button_text_long = 2131034141;
 			
-			// aapt resource value: 0x7f050040
-			public const int library_name = 2131034176;
+			// aapt resource value: 0x7f050042
+			public const int library_name = 2131034178;
 			
 			// aapt resource value: 0x7f050022
 			public const int mr_media_route_button_content_description = 2131034146;

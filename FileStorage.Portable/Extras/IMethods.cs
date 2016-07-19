@@ -6,6 +6,8 @@
 
 namespace FileStorage.Portable.Extras
 {
+	using System.Threading.Tasks;
+
 	/// <summary>
 	/// The methods interface
 	/// </summary>
@@ -17,6 +19,12 @@ namespace FileStorage.Portable.Extras
 		/// Exit this instance.
 		/// </summary>
 		void Exit();
+
+		/// <summary>
+		/// Displaies the entry alert.
+		/// </summary>
+		/// <returns>The entry alert.</returns>
+		void DisplayEntryAlert(TaskCompletionSource<string> tcs, string message);
 
 		#endregion
 	}

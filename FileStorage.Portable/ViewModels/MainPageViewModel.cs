@@ -180,7 +180,7 @@ namespace FileStorage.Portable.ViewModels
 		/// <param name="commandFactory">Command factory.</param>
 		/// <param name="methods">Methods.</param>
 		public MainPageViewModel (INavigationService navigation, Func<Action, ICommand> commandFactory,
-			IMethods methods) : base (navigation)
+			IMethods methods) : base (navigation, methods)
 		{
 			_exitCommand = commandFactory (() => methods.Exit());
 			_locationCommand = commandFactory (async () => await Navigation.Navigate(PageNames.FilesPage, null));

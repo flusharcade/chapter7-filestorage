@@ -1,16 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+<ui:ExtendedContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-  	xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+	xmlns:resx="clr-namespace:FileStorage.Portable.Resources;assembly=FileStorage.Portable"
+	xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+  	xmlns:ui="clr-namespace:FileStorage.UI;assembly=Xamarin.Forms"
+	xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"		
 	x:Class="FileStorage.Pages.FilesPage"
 	BackgroundColor="White"
-	Title="Map">
-
-	<ContentPage.Content>
-
+	Title="Files">
+	
+	<ui:ExtendedContentPage.Content>
 		<Grid x:Name="Grid" RowSpacing="10" Padding="10, 10, 10, 10">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="*"/>
+				<RowDefinition Height="60"/>
 				<RowDefinition Height="60"/>
 			</Grid.RowDefinitions>
 
@@ -18,15 +21,37 @@
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
 
-			<CarouselView x:Name="FilesCarousel" ItemsSource="{Binding Files}">
-				<CarouselView.ItemTemplate>
+			<Label x:Name="NoFilesLabel" IsVisible="{Binding AnyFiles, Converter={StaticResource notConverter}}"
+					HorizontalTextAlignment="Center"
+					VerticalTextAlignment="Center"
+					Grid.Row="0" Grid.Column="0">
+				<Label.FormattedText>
+					<FormattedString>
+						<Span Text="{x:Static resx:LabelResources.NoFilesLabel}" 
+							FontFamily="Arial" 
+							FontSize="24"
+							ForegroundColor="Black"/>
+					</FormattedString>
+				</Label.FormattedText>
+	        </Label>
+	
+			<cv:CarouselView x:Name="FilesCarousel" IsVisible="{Binding AnyFiles}" 
+					ItemsSource="{Binding Files}" Grid.Row="0" Grid.Column="0">
+				<cv:CarouselView.ItemTemplate>
 					<DataTemplate>
 						<Label Text="{Binding LabelText}" />
 					</DataTemplate>
-				</CarouselView.ItemTemplate>
-			</CarouselView>
-    </Grid>
+				</cv:CarouselView.ItemTemplate>
+			</cv:CarouselView>
 
-	</ContentPage.Content>
+			<Button x:Name="CreateFileButton" Command="{Binding CreateFileCommand}" 
+				Text="{x:Static resx:LabelResources.CreateFileLabel}" 
+				Grid.Row="1" Grid.Column="0"/>
 
-</ContentPage>
+			<Button x:Name="EditFileButton" Command="{Binding EditFileCommand}"
+				Text="{x:Static resx:LabelResources.EditFileLabel}" 
+				Grid.Row="2" Grid.Column="0"/>
+		</Grid>
+
+	</ui:ExtendedContentPage.Content>
+</ui:ExtendedContentPage>

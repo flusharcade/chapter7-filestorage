@@ -8,10 +8,14 @@ namespace FileStorage.iOS.Modules
 {
 	using Autofac;
 
+	using FileStorage.iOS.DataAccess;
 	using FileStorage.iOS.Extras;
+	using FileStorage.iOS.Logging;
 
+	using FileStorage.Portable.DataAccess.Storage;
 	using FileStorage.Portable.Extras;
 	using FileStorage.Portable.Ioc;
+	using FileStorage.Portable.Logging;
 
 	/// <summary>
 	/// IOS Module.
@@ -27,6 +31,8 @@ namespace FileStorage.iOS.Modules
 		public void Register(ContainerBuilder builer)
 		{
 			builer.RegisterType<IOSMethods>().As<IMethods>().SingleInstance();
+			builer.RegisterType<LoggeriOS>().As<ILogger>().SingleInstance();
+			builer.RegisterType<SQLiteSetup>().As<ISQLiteSetup>().SingleInstance();
 		}
 
 		#endregion

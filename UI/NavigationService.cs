@@ -60,6 +60,8 @@ namespace FileStorage.UI
 					return IoC.Resolve<MainPage> ();
 				case PageNames.FilesPage:
 					return IoC.Resolve<FilesPage> ();
+				case PageNames.EditFilePage:
+					return IoC.Resolve<EditFilePage>();
 				default:
 					return null;
 			}

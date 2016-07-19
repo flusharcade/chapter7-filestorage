@@ -19,9 +19,14 @@ namespace FileStorage.Portable.Enums
 		MainPage,
 
 		/// <summary>
-		/// The map page.
+		/// The files page.
 		/// </summary>
-		FilesPage
+		FilesPage,
+
+		/// <summary>
+		/// Page names.
+		/// </summary>
+		EditFilePage,
 
 		#endregion
 	}

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FilesPageViewModel.cs" company="Flush Arcade Pty Ltd.">
+// <copyright file="EditFilePageViewModel.cs" company="Flush Arcade Pty Ltd.">
 //   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -19,105 +19,127 @@ namespace FileStorage.Portable.ViewModels
 	using FileStorage.Portable.Extras;
 
 	/// <summary>
-	/// Files page view model.
+	/// Edit file page view model.
 	/// </summary>
-	public class FilesPageViewModel : ViewModelBase
+	public class EditFilePageViewModel : ViewModelBase
 	{
 		#region Private Properties
 
 		/// <summary>
-		/// The create command.
+		/// The save file command.
 		/// </summary>
-		private ICommand _editFileCommand;
+		private ICommand _saveFileCommand;
 
 		/// <summary>
-		/// The create file command.
+		/// The delete file command.
 		/// </summary>
-		private ICommand _createFileCommand;
+		private ICommand _deleteFileCommand;
 
 		/// <summary>
-		/// The no files.
+		/// The contents.
 		/// </summary>
-		private bool _noFiles;
+		private string _contents;
+
+		/// <summary>
+		/// The name of the file.
+		/// </summary>
+		private string _fileName;
 
 		#endregion
 
 		#region Public Properties
 
 		/// <summary>
-		/// Gets or sets the create command.
+		/// Gets or sets the save file command.
 		/// </summary>
-		/// <value>The create command.</value>
-		public ICommand EditFileCommand
+		/// <value>The save file command.</value>
+		public ICommand SaveFileCommand
 		{
 			get
 			{
-				return _editFileCommand;
+				return _saveFileCommand;
 			}
 
 			set
 			{
-				if (value.Equals(_editFileCommand))
+				if (value.Equals(_saveFileCommand))
 				{
 					return;
 				}
 
-				_editFileCommand = value;
-				OnPropertyChanged("EditFileCommand");
+				_saveFileCommand = value;
+				OnPropertyChanged("FileEditCommand");
 			}
 		}
 
 		/// <summary>
-		/// Gets or sets the create file command.
+		/// Gets or sets the delete file command.
 		/// </summary>
-		/// <value>The create file command.</value>
-		public ICommand CreateFileCommand
+		/// <value>The delete file command.</value>
+		public ICommand DeleteFileCommand
 		{
 			get
 			{
-				return _createFileCommand;
+				return _deleteFileCommand;
 			}
 
 			set
 			{
-				if (value.Equals(_createFileCommand))
+				if (value.Equals(_deleteFileCommand))
 				{
 					return;
 				}
 
-				_createFileCommand = value;
+				_deleteFileCommand = value;
 				OnPropertyChanged("CreateFileCommand");
 			}
 		}
 
 		/// <summary>
-		/// Gets or sets the address.
+		/// Gets or sets the contents.
 		/// </summary>
-		/// <value>The address.</value>
-		public bool AnyFiles
+		/// <value>The contents.</value>
+		public string Contents
 		{
 			get
 			{
-				return _noFiles;
+				return _contents;
 			}
 
 			set
 			{
-				if (value.Equals(_noFiles))
+				if (value.Equals(_contents))
 				{
 					return;
 				}
 
-				_noFiles = value;
-				OnPropertyChanged("NoFiles");
+				_contents = value;
+				OnPropertyChanged("Contents");
 			}
 		}
 
 		/// <summary>
-		/// Gets or sets the files.
+		/// Gets or sets the name of the file.
 		/// </summary>
-		/// <value>The files.</value>
-		public ObservableCollection<FileItemViewModel> Files { get; set; }
+		/// <value>The name of the file.</value>
+		public string FileName
+		{
+			get
+			{
+				return _fileName;
+			}
+
+			set
+			{
+				if (value.Equals(_fileName))
+				{
+					return;
+				}
+
+				_fileName = value;
+				OnPropertyChanged("FileName");
+			}
+		}
 
 		#endregion
 
@@ -128,23 +150,16 @@ namespace FileStorage.Portable.ViewModels
 		/// </summary>
 		/// <param name="navigation">Navigation.</param>
 		/// <param name="commandFactory">Command factory.</param>
-		public FilesPageViewModel (INavigationService navigation, Func<Action, ICommand> commandFactory, IMethods methods) 
+		public EditFilePageViewModel (INavigationService navigation, Func<Action, ICommand> commandFactory, IMethods methods) 
 			: base (navigation, methods)
 		{
-			Files = new ObservableCollection<FileItemViewModel>();
-
-			_editFileCommand = commandFactory(async () =>
+			_saveFileCommand = commandFactory(async () =>
 			{
-				await Navigation.Navigate(PageNames.EditFilePage, null);
+				
 			});
-			_createFileCommand = commandFactory(async () =>
+			_deleteFileCommand = commandFactory(async () =>
 			{
-				var fileName = await ShowEntryAlert("Enter file name:");
-
-				await Navigation.Navigate(PageNames.EditFilePage, new Dictionary<string, object>()
-				{
-					{"filename", fileName}
-				});
+				
 			});
 		}
 
@@ -181,7 +196,10 @@ namespace FileStorage.Portable.ViewModels
 		/// <param name="parameters">Parameters.</param>
 		protected override async Task LoadAsync (IDictionary<string, object> parameters)
 		{
-			AnyFiles = Files.Any();
+			if (parameters.ContainsKey("filename"))
+			{
+				FileName = parameters["filename"] as string;
+			}
 		}
 
 		#endregion

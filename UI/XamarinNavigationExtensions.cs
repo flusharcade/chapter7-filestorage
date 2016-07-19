@@ -8,8 +8,6 @@ namespace FileStorage.UI
 {
 	using System.Collections.Generic;
 
-	using Xamarin.Forms;
-
 	using FileStorage.Portable.ViewModels;
 
 	/// <summary>
@@ -24,7 +22,7 @@ namespace FileStorage.UI
 		/// </summary>
 		/// <param name="page">Page.</param>
 		/// <param name="parameters">Parameters.</param>
-		public static void Show(this ContentPage page, IDictionary<string, object> parameters)
+		public static void Show(this ExtendedContentPage page, IDictionary<string, object> parameters)
 		{
 			var target = page.BindingContext as ViewModelBase;
 

@@ -18,23 +18,15 @@ namespace FileStorage.Pages
 	/// <summary>
 	/// Main page.
 	/// </summary>
-	public partial class MainPage : ContentPage, INavigableXamarinFormsPage 
+	public partial class MainPage : ExtendedContentPage, INavigableXamarinFormsPage 
 	{
 		#region Constructors
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:FileStorage.Pages.MainPage"/> class.
 		/// </summary>
-		public MainPage ()
-		{
-			InitializeComponent ();
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:FileStorage.Pages.MainPage"/> class.
-		/// </summary>
 		/// <param name="model">Model.</param>
-		public MainPage (MainPageViewModel model)
+		public MainPage (MainPageViewModel model) : base(model)
 		{
 			BindingContext = model;
 			InitializeComponent ();

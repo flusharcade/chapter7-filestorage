@@ -98,7 +98,7 @@ namespace FileStorage.Portable.ViewModels
 		/// Initializes a new instance of the <see cref="T:FileStorage.Portable.ViewModels.FileItemViewModel"/> class.
 		/// </summary>
 		/// <param name="navigation">Navigation.</param>
-		public FileItemViewModel(INavigationService navigation) : base(navigation)
+		public FileItemViewModel(INavigationService navigation, IMethods methods) : base(navigation, methods)
 		{
 		}
 

@@ -29,6 +29,7 @@ namespace FileStorage.Portable.Modules
 		{
 			builer.RegisterType<MainPageViewModel> ().SingleInstance();
 			builer.RegisterType<FilesPageViewModel> ().SingleInstance();
+			builer.RegisterType<EditFilePageViewModel>().SingleInstance();
 		}
 
 		#endregion

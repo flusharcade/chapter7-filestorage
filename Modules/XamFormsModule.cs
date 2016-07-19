@@ -33,6 +33,7 @@ namespace FileStorage.Modules
 		{
 			builer.RegisterType<MainPage> ().SingleInstance();
 			builer.RegisterType<FilesPage> ().SingleInstance();
+			builer.RegisterType<EditFilePage>().SingleInstance();
 
 			builer.RegisterType<Command> ().As<ICommand>().InstancePerDependency();
 

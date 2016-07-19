@@ -6,9 +6,12 @@
 
 namespace FileStorage.iOS.Extras
 {
+	using System.Threading.Tasks;
+
 	using UIKit;
 
 	using FileStorage.Portable.Extras;
+	using System;
 
 	/// <summary>
 	/// The methods interface
@@ -25,7 +28,33 @@ namespace FileStorage.iOS.Extras
 			UIApplication.SharedApplication.PerformSelector(new ObjCRuntime.Selector("terminateWithSuccess"), null, 0f);
 		}
 
+		/// <summary>
+		/// Displaies the entry alert.
+		/// </summary>
+		/// <returns>The entry alert.</returns>
+		/// <param name="tcs">Tcs.</param>
+		public void DisplayEntryAlert(TaskCompletionSource<string> tcs, string message)
+		{
+			UIAlertView alert = new UIAlertView();
+			alert.Title = "Title";
+			alert.AddButton("OK");
+			alert.AddButton("Cancel");
+			alert.Message = message;
+			alert.AlertViewStyle = UIAlertViewStyle.PlainTextInput;
+			alert.Clicked += (object s, UIButtonEventArgs ev) =>
+			{
+				if (ev.ButtonIndex == 0)
+				{
+					tcs.SetResult(alert.GetTextField(0).Text);
+				}
+				else
+				{
+					tcs.SetCanceled();
+				}
+			};
+			alert.Show();
+		}
+
 		#endregion
 	}
 }
-
