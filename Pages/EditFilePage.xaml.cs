@@ -37,7 +37,9 @@ namespace FileStorage.Pages
 		public EditFilePage(EditFilePageViewModel model) : base(model)
 		{
 			_viewModel = model;
+			_viewModel.Alert += HandleAlert;
 			BindingContext = model;
+
 			InitializeComponent();
 
 			Appearing += HandleAppearing;
@@ -47,6 +49,17 @@ namespace FileStorage.Pages
 		#endregion
 
 		#region Private Methods
+
+		/// <summary>
+		/// Handles the alert.
+		/// </summary>
+		/// <returns>The alert.</returns>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">E.</param>
+		private async void HandleAlert(object sender, string e)
+		{
+			await DisplayAlert("FileStorage", e, "OK");
+		}
 
 		/// <summary>
 		/// Handles the disappearing.

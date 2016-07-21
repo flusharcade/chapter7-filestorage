@@ -16,10 +16,10 @@ namespace FileStorage.Portable.Ioc
 		#region Methods
 
 		/// <summary>
-		/// Register the specified builer.
+		/// Register the specified builder.
 		/// </summary>
-		/// <param name="builer">Builer.</param>
-		void Register(ContainerBuilder builer);
+		/// <param name="builder">builder.</param>
+		void Register(ContainerBuilder builder);
 
 		#endregion
 	}

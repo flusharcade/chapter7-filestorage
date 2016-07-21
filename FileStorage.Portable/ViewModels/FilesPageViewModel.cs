@@ -13,10 +13,13 @@ namespace FileStorage.Portable.ViewModels
 	using System.Windows.Input;
 	using System.Collections.ObjectModel;
 	using System.Collections.Generic;
+	using System.Threading;
 
 	using FileStorage.Portable.UI;
 	using FileStorage.Portable.Enums;
 	using FileStorage.Portable.Extras;
+	using FileStorage.Portable.DataAccess.Storage;
+	using FileStorage.Portable.DataAccess.Storable;
 
 	/// <summary>
 	/// Files page view model.
@@ -24,6 +27,16 @@ namespace FileStorage.Portable.ViewModels
 	public class FilesPageViewModel : ViewModelBase
 	{
 		#region Private Properties
+
+		/// <summary>
+		/// The file factory.
+		/// </summary>
+		private readonly Func<FileItemViewModel> _fileFactory;
+
+		/// <summary>
+		/// The storage.
+		/// </summary>
+		private readonly ISQLiteStorage _storage;
 
 		/// <summary>
 		/// The create command.
@@ -109,7 +122,7 @@ namespace FileStorage.Portable.ViewModels
 				}
 
 				_noFiles = value;
-				OnPropertyChanged("NoFiles");
+				OnPropertyChanged("AnyFiles");
 			}
 		}
 
@@ -128,29 +141,57 @@ namespace FileStorage.Portable.ViewModels
 		/// </summary>
 		/// <param name="navigation">Navigation.</param>
 		/// <param name="commandFactory">Command factory.</param>
-		public FilesPageViewModel (INavigationService navigation, Func<Action, ICommand> commandFactory, IMethods methods) 
-			: base (navigation, methods)
+		public FilesPageViewModel(INavigationService navigation, Func<Action, ICommand> commandFactory,
+								   IMethods methods, ISQLiteStorage storage, Func<FileItemViewModel> fileFactory)
+			: base(navigation, methods)
 		{
+			_storage = storage;
+			_fileFactory = fileFactory;
+
 			Files = new ObservableCollection<FileItemViewModel>();
 
 			_editFileCommand = commandFactory(async () =>
 			{
 				await Navigation.Navigate(PageNames.EditFilePage, null);
 			});
+
 			_createFileCommand = commandFactory(async () =>
 			{
 				var fileName = await ShowEntryAlert("Enter file name:");
 
-				await Navigation.Navigate(PageNames.EditFilePage, new Dictionary<string, object>()
+				if (!string.IsNullOrEmpty(fileName))
 				{
-					{"filename", fileName}
-				});
+					await Navigation.Navigate(PageNames.EditFilePage, new Dictionary<string, object>()
+					{
+						{"filename", fileName}
+					});
+				}
 			});
 		}
 
 		#endregion
 
 		#region Private Methods
+
+		/// <summary>
+		/// Updates the files.
+		/// </summary>
+		/// <returns>The files.</returns>
+		private async Task UpdateFiles()
+		{
+			var files = await _storage.GetTable<FileStorable>(CancellationToken.None);
+
+			Files.Clear();
+
+			foreach (var file in files)
+			{
+				var fileModel = _fileFactory();
+				fileModel.Apply(file);
+				Files.Add(fileModel);
+			}
+
+			AnyFiles = Files.Any();
+		}
 
 		#endregion
 
@@ -160,9 +201,9 @@ namespace FileStorage.Portable.ViewModels
 		/// Ons the appear.
 		/// </summary>
 		/// <returns>The appear.</returns>
-		public void OnAppear()
+		public async void OnAppear()
 		{
-
+			await UpdateFiles();
 		}
 
 		/// <summary>
@@ -181,7 +222,7 @@ namespace FileStorage.Portable.ViewModels
 		/// <param name="parameters">Parameters.</param>
 		protected override async Task LoadAsync (IDictionary<string, object> parameters)
 		{
-			AnyFiles = Files.Any();
+			await UpdateFiles();
 		}
 
 		#endregion

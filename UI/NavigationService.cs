@@ -45,6 +45,14 @@ namespace FileStorage.UI
 			}
 		}
 
+		/// <summary>
+		/// Pop this instance.
+		/// </summary>
+		public async Task Pop()
+		{
+			await IoC.Resolve<NavigationPage>().PopAsync();
+		}
+
 		#endregion
 
 		/// <summary>

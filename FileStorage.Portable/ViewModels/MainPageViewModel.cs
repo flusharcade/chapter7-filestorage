@@ -8,10 +8,14 @@ namespace FileStorage.Portable.ViewModels
 {
 	using System;
 	using System.Windows.Input;
+	using System.Threading.Tasks;
+	using System.Threading;
 
 	using FileStorage.Portable.Enums;
 	using FileStorage.Portable.UI;
 	using FileStorage.Portable.Extras;
+	using FileStorage.Portable.DataAccess.Storage;
+	using FileStorage.Portable.DataAccess.Storable;
 
 	/// <summary>
 	/// Main page view model.
@@ -49,6 +53,11 @@ namespace FileStorage.Portable.ViewModels
 		/// The exit command.
 		/// </summary>
 		private ICommand _exitCommand;
+
+		/// <summary>
+		/// The storage.
+		/// </summary>
+		private ISQLiteStorage _storage;
 
 		#endregion
 
@@ -180,12 +189,29 @@ namespace FileStorage.Portable.ViewModels
 		/// <param name="commandFactory">Command factory.</param>
 		/// <param name="methods">Methods.</param>
 		public MainPageViewModel (INavigationService navigation, Func<Action, ICommand> commandFactory,
-			IMethods methods) : base (navigation, methods)
+			IMethods methods, ISQLiteStorage storage) : base (navigation, methods)
 		{
 			_exitCommand = commandFactory (() => methods.Exit());
 			_locationCommand = commandFactory (async () => await Navigation.Navigate(PageNames.FilesPage, null));
+
+			_storage = storage;
+
+			SetupSQLite().ConfigureAwait(false);
 		}
 
 		#endregion
+
+		/// <summary>
+		/// Setups the SQL ite.
+		/// </summary>
+		/// <returns>The SQL ite.</returns>
+		private async Task SetupSQLite()
+		{
+			// create Sqlite connection
+			_storage.CreateSQLiteAsyncConnection();
+
+			// create DB tables
+			await _storage.CreateTable<FileStorable>(CancellationToken.None);
+		}
 	}
 }

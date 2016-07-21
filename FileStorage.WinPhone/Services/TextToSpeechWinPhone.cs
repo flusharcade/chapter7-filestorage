@@ -23,7 +23,7 @@ namespace FileStorage.WinPhone.Services
 		#region Public Methods
 
 		/// <summary>
-		/// Register the specified builer.
+		/// Register the specified builder.
 		/// </summary>
 		/// <param name="text">string.</param>
         public async void Speak(string text)

@@ -4,7 +4,7 @@
 	xmlns:resx="clr-namespace:FileStorage.Portable.Resources;assembly=FileStorage.Portable"
 	xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
   	xmlns:ui="clr-namespace:FileStorage.UI;assembly=Xamarin.Forms"
-	xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"		
+	xmlns:controls="clr-namespace:FileStorage.Controls;assembly=FileStorage"
 	x:Class="FileStorage.Pages.FilesPage"
 	BackgroundColor="White"
 	Title="Files">
@@ -34,16 +34,12 @@
 					</FormattedString>
 				</Label.FormattedText>
 	        </Label>
-	
-			<cv:CarouselView x:Name="FilesCarousel" IsVisible="{Binding AnyFiles}" 
-					ItemsSource="{Binding Files}" Grid.Row="0" Grid.Column="0">
-				<cv:CarouselView.ItemTemplate>
-					<DataTemplate>
-						<Label Text="{Binding LabelText}" />
-					</DataTemplate>
-				</cv:CarouselView.ItemTemplate>
-			</cv:CarouselView>
 
+			<controls:CarouselView x:Name="CarouselView" 
+				ItemsSource="{Binding Files}"
+				ItemTemplate="{StaticResource CarouselTemplate}"
+				Grid.Row="0" Grid.Column="0"/>
+			
 			<Button x:Name="CreateFileButton" Command="{Binding CreateFileCommand}" 
 				Text="{x:Static resx:LabelResources.CreateFileLabel}" 
 				Grid.Row="1" Grid.Column="0"/>

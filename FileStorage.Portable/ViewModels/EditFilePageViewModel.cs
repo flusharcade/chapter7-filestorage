@@ -7,16 +7,15 @@
 namespace FileStorage.Portable.ViewModels
 {
 	using System;
-	using System.Reactive.Linq;
-	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Input;
-	using System.Collections.ObjectModel;
 	using System.Collections.Generic;
+	using System.Threading;
 
 	using FileStorage.Portable.UI;
-	using FileStorage.Portable.Enums;
 	using FileStorage.Portable.Extras;
+	using FileStorage.Portable.DataAccess.Storage;
+	using FileStorage.Portable.DataAccess.Storable;
 
 	/// <summary>
 	/// Edit file page view model.
@@ -24,6 +23,11 @@ namespace FileStorage.Portable.ViewModels
 	public class EditFilePageViewModel : ViewModelBase
 	{
 		#region Private Properties
+
+		/// <summary>
+		/// The storage.
+		/// </summary>
+		private readonly ISQLiteStorage _storage;
 
 		/// <summary>
 		/// The save file command.
@@ -150,16 +154,27 @@ namespace FileStorage.Portable.ViewModels
 		/// </summary>
 		/// <param name="navigation">Navigation.</param>
 		/// <param name="commandFactory">Command factory.</param>
-		public EditFilePageViewModel (INavigationService navigation, Func<Action, ICommand> commandFactory, IMethods methods) 
+		public EditFilePageViewModel (INavigationService navigation, Func<Action, ICommand> commandFactory, 
+		                              IMethods methods, ISQLiteStorage storage) 
 			: base (navigation, methods)
 		{
+			_storage = storage;
+
 			_saveFileCommand = commandFactory(async () =>
 			{
-				
+				await _storage.InsertObject(new FileStorable()
+				{
+					Key = FileName,
+					Contents = Contents
+				}, CancellationToken.None);
+
+				NotifyAlert("File saved.");
 			});
+
 			_deleteFileCommand = commandFactory(async () =>
 			{
-				
+				await _storage.DeleteObjectByKey<FileStorable>(FileName, CancellationToken.None);
+				await Navigation.Pop();
 			});
 		}
 
@@ -186,7 +201,8 @@ namespace FileStorage.Portable.ViewModels
 		/// <returns>The disppear.</returns>
 		public void OnDisppear()
 		{
-
+			FileName = string.Empty;
+			Contents = string.Empty;
 		}
 
 		/// <summary>

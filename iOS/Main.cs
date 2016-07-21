@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
-using UIKit;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Application.cs" company="Flush Arcade Pty Ltd.">
+//   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace FileStorage.iOS
 {
+	using Foundation;
+	using UIKit;
+
 	public class Application
 	{
 		// This is the main entry point of the application.
@@ -18,4 +20,3 @@ namespace FileStorage.iOS
 		}
 	}
 }
-

@@ -3,6 +3,7 @@
 //   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
+using FileStorage.Portable.DataAccess.Storage;
 
 namespace FileStorage.Portable.Modules
 {
@@ -22,14 +23,18 @@ namespace FileStorage.Portable.Modules
 		#region Public Methods
 
 		/// <summary>
-		/// Register the specified builer.
+		/// Register the specified builder.
 		/// </summary>
-		/// <param name="builer">Builer.</param>
-		public void Register(ContainerBuilder builer)
+		/// <param name="builder">builder.</param>
+		public void Register(ContainerBuilder builder)
 		{
-			builer.RegisterType<MainPageViewModel> ().SingleInstance();
-			builer.RegisterType<FilesPageViewModel> ().SingleInstance();
-			builer.RegisterType<EditFilePageViewModel>().SingleInstance();
+			builder.RegisterType<SQLiteStorage>().As<ISQLiteStorage>().SingleInstance();
+
+			builder.RegisterType<MainPageViewModel> ().SingleInstance();
+			builder.RegisterType<FilesPageViewModel> ().SingleInstance();
+			builder.RegisterType<EditFilePageViewModel>().SingleInstance();
+
+			builder.RegisterType<FileItemViewModel>().InstancePerDependency();
 		}
 
 		#endregion

@@ -11,7 +11,7 @@ namespace FileStorage.Droid.DataAccess
 
 	using SQLite.Net.Interop;
 
-	using FileStorage.Portable.DataAccess;
+	using FileStorage.Portable.DataAccess.Storage;
 
 	/// <summary>
 	/// The SQLite setup object.

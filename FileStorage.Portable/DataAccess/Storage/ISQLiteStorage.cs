@@ -8,7 +8,6 @@ namespace FileStorage.Portable.DataAccess.Storage
 {
 	using System.Threading;
 	using System.Threading.Tasks;
-
 	using System.Collections.Generic;
 
 	using FileStorage.Portable.DataAccess.Storable;

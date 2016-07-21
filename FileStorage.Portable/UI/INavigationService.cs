@@ -25,6 +25,11 @@ namespace FileStorage.Portable.UI
 		/// <param name="navigationParameters">Navigation parameters.</param>
 		Task Navigate (PageNames pageName, IDictionary<string, object> navigationParameters);
 
+		/// <summary>
+		/// Pop this instance.
+		/// </summary>
+		Task Pop();
+
 		#endregion
 	}
 }

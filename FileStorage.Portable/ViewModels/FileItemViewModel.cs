@@ -6,9 +6,9 @@
 
 namespace FileStorage.Portable.ViewModels
 {
-	using FileStorage.Portable.Enums;
 	using FileStorage.Portable.UI;
 	using FileStorage.Portable.Extras;
+	using FileStorage.Portable.DataAccess.Storable;
 
 	/// <summary>
 	/// File item view model.
@@ -18,41 +18,18 @@ namespace FileStorage.Portable.ViewModels
 		#region Private Properties
 
 		/// <summary>
-		/// The identifier.
-		/// </summary>
-		private int _id;
-
-		/// <summary>
 		/// The name.
 		/// </summary>
 		private string _fileName;
 
+		/// <summary>
+		/// The identifier.
+		/// </summary>
+		private string _contents;
+
 		#endregion
 
 		#region Public Properties
-
-		/// <summary>
-		/// Gets or sets the identifier.
-		/// </summary>
-		/// <value>The identifier.</value>
-		public int Id
-		{
-			get
-			{
-				return _id;
-			}
-
-			set
-			{
-				if (value.Equals(_id))
-				{
-					return;
-				}
-
-				_id = value;
-				OnPropertyChanged("Id");
-			}
-		}
 
 		/// <summary>
 		/// Gets or sets the name.
@@ -73,7 +50,30 @@ namespace FileStorage.Portable.ViewModels
 				}
 
 				_fileName = value;
-				OnPropertyChanged("Name");
+				OnPropertyChanged("FileName");
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the contents.
+		/// </summary>
+		/// <value>The contents.</value>
+		public string Contents
+		{
+			get
+			{
+				return _contents;
+			}
+
+			set
+			{
+				if (value.Equals(_contents))
+				{
+					return;
+				}
+
+				_contents = value;
+				OnPropertyChanged("Contents");
 			}
 		}
 
@@ -82,12 +82,13 @@ namespace FileStorage.Portable.ViewModels
 		#region Public Methods
 
 		/// <summary>
-		/// Apply the specified contract.
+		/// Apply the specified file.
 		/// </summary>
-		/// <param name="contract">Contract.</param>
-		public void Apply()
+		/// <param name="file">File.</param>
+		public void Apply(FileStorable file)
 		{
-
+			FileName = file.Key ?? string.Empty;
+			Contents = file.Contents ?? string.Empty;
 		}
 
 		#endregion
@@ -98,7 +99,8 @@ namespace FileStorage.Portable.ViewModels
 		/// Initializes a new instance of the <see cref="T:FileStorage.Portable.ViewModels.FileItemViewModel"/> class.
 		/// </summary>
 		/// <param name="navigation">Navigation.</param>
-		public FileItemViewModel(INavigationService navigation, IMethods methods) : base(navigation, methods)
+		public FileItemViewModel(INavigationService navigation, IMethods methods) 
+			: base(navigation, methods)
 		{
 		}
 

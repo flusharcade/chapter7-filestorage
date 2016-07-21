@@ -89,7 +89,8 @@ namespace FileStorage.Portable.DataAccess.Storage
 				{
 					if (_conn == null)
 					{
-						_conn = new SQLiteConnectionWithLock(_sqlitePlatform, new SQLiteConnectionString(_dbPath, true));
+						_conn = new SQLiteConnectionWithLock(_sqlitePlatform, 
+					                                         new SQLiteConnectionString(_dbPath, true));
 					}
 
 					return _conn;

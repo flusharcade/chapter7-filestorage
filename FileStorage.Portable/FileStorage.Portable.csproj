@@ -44,7 +44,7 @@
     <Compile Include="Resources\ApiConfig.Designer.cs">
       <DependentUpon>ApiConfig.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\FileViewModel.cs" />
+    <Compile Include="ViewModels\FileItemViewModel.cs" />
     <Compile Include="DataAccess\Storage\ISQLiteSetup.cs" />
     <Compile Include="DataAccess\Storage\ISQLiteStorage.cs" />
     <Compile Include="DataAccess\Storage\SQLiteStorage.cs" />

@@ -7,11 +7,11 @@
 namespace FileStorage.iOS.Extras
 {
 	using System.Threading.Tasks;
+	using System;
 
 	using UIKit;
 
 	using FileStorage.Portable.Extras;
-	using System;
 
 	/// <summary>
 	/// The methods interface
@@ -49,7 +49,7 @@ namespace FileStorage.iOS.Extras
 				}
 				else
 				{
-					tcs.SetCanceled();
+					tcs.SetResult(null);
 				}
 			};
 			alert.Show();

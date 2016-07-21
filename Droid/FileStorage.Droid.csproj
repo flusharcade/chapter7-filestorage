@@ -129,6 +129,10 @@
     <Reference Include="SQLite.Net.Platform.XamarinAndroid">
       <HintPath>..\packages\SQLite.Net-PCL.3.1.1\lib\MonoAndroid\SQLite.Net.Platform.XamarinAndroid.dll</HintPath>
     </Reference>
+    <Reference Include="ExifLib">
+      <HintPath>..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Android.Export" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -137,6 +141,7 @@
     <Compile Include="Modules\DroidModule.cs" />
     <Compile Include="Extras\DroidMethods.cs" />
     <Compile Include="DataAccess\SQLiteSetup.cs" />
+    <Compile Include="Logging\LoggerDroid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -150,10 +155,13 @@
     <Folder Include="Modules\" />
     <Folder Include="Extras\" />
     <Folder Include="DataAccess\" />
+    <Folder Include="Logging\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\drawable\files.png" />
+    <AndroidResource Include="Resources\drawable\file.png" />
+    <AndroidResource Include="Resources\layout\EntryAlertView.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FileStorage.csproj">
