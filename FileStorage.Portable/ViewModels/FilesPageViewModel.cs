@@ -39,6 +39,11 @@ namespace FileStorage.Portable.ViewModels
 		private readonly ISQLiteStorage _storage;
 
 		/// <summary>
+		/// The context.
+		/// </summary>
+		private readonly SynchronizationContext _context;
+
+		/// <summary>
 		/// The create command.
 		/// </summary>
 		private ICommand _editFileCommand;
@@ -145,6 +150,8 @@ namespace FileStorage.Portable.ViewModels
 								   IMethods methods, ISQLiteStorage storage, Func<FileItemViewModel> fileFactory)
 			: base(navigation, methods)
 		{
+			// retrieve main thread context
+			_context = SynchronizationContext.Current;
 			_storage = storage;
 			_fileFactory = fileFactory;
 
@@ -177,20 +184,23 @@ namespace FileStorage.Portable.ViewModels
 		/// Updates the files.
 		/// </summary>
 		/// <returns>The files.</returns>
-		private async Task UpdateFiles()
+		private void UpdateFiles()
 		{
-			var files = await _storage.GetTable<FileStorable>(CancellationToken.None);
-
-			Files.Clear();
-
-			foreach (var file in files)
+			_context.Post(async (obj) =>
 			{
-				var fileModel = _fileFactory();
-				fileModel.Apply(file);
-				Files.Add(fileModel);
-			}
+				var files = await _storage.GetTable<FileStorable>(CancellationToken.None);
 
-			AnyFiles = Files.Any();
+				Files.Clear();
+
+				foreach (var file in files)
+				{
+					var fileModel = _fileFactory();
+					fileModel.Apply(file);
+					Files.Add(fileModel);
+				}
+
+				AnyFiles = Files.Any();
+			}, null);
 		}
 
 		#endregion
@@ -201,9 +211,9 @@ namespace FileStorage.Portable.ViewModels
 		/// Ons the appear.
 		/// </summary>
 		/// <returns>The appear.</returns>
-		public async void OnAppear()
+		public void OnAppear()
 		{
-			await UpdateFiles();
+			UpdateFiles();
 		}
 
 		/// <summary>
@@ -222,7 +232,7 @@ namespace FileStorage.Portable.ViewModels
 		/// <param name="parameters">Parameters.</param>
 		protected override async Task LoadAsync (IDictionary<string, object> parameters)
 		{
-			await UpdateFiles();
+			UpdateFiles();
 		}
 
 		#endregion
