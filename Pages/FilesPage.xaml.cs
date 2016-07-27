@@ -9,8 +9,6 @@ namespace FileStorage.Pages
 	using System;
 	using System.Collections.Generic;
 
-	using Xamarin.Forms;
-
 	using FileStorage.UI;
 	using FileStorage.Portable.ViewModels;
 

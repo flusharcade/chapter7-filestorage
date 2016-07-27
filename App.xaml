@@ -21,7 +21,7 @@
 					
 					<Image x:Name="FileImage" Source="file.png" Grid.RowSpan="2" Aspect="AspectFill"/>
 					
-					<StackLayout Grid.Row="1" BackgroundColor="Silver" Padding="12">
+					<StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
 						<Label TextColor="White" Text="{Binding FileName}" 
 							FontSize="16" 
 							HorizontalOptions="Center" 
