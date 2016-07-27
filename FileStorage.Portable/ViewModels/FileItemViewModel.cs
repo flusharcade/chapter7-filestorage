@@ -13,7 +13,7 @@ namespace FileStorage.Portable.ViewModels
 	/// <summary>
 	/// File item view model.
 	/// </summary>
-	public class FileItemViewModel : ViewModelBase
+	public class FileItemViewModel : ViewModelBase, ICell
 	{
 		#region Private Properties
 

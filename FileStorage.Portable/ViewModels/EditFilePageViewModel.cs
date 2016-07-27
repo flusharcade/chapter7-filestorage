@@ -180,10 +180,6 @@ namespace FileStorage.Portable.ViewModels
 
 		#endregion
 
-		#region Private Methods
-
-		#endregion
-
 		#region Public Methods
 
 		/// <summary>
@@ -214,7 +210,12 @@ namespace FileStorage.Portable.ViewModels
 		{
 			if (parameters.ContainsKey("filename"))
 			{
-				FileName = parameters["filename"] as string;
+				FileName = (parameters["filename"] as string).ToLower();
+			}
+
+			if (parameters.ContainsKey("contents"))
+			{
+				Contents = parameters["contents"] as string;
 			}
 		}
 

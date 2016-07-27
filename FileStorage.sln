@@ -10,8 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileStorage.Portable", "Fil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileStorage.iOS", "iOS\FileStorage.iOS.csproj", "{297AA301-F540-4650-AA32-271E9D6CE8D4}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FileStorage.Shared", "FileStorage.Shared\FileStorage.Shared.shproj", "{6BC1DB5C-B0B2-48CF-A766-E89897172046}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileStorage.WinPhone", "FileStorage.WinPhone\FileStorage.WinPhone.csproj", "{C1AD639D-58F8-49EC-879B-0C740F99632C}"
 EndProject
 Global

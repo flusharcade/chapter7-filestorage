@@ -22,35 +22,11 @@
 			<Image x:Name="Image" Source="files.png" HeightRequest="120" WidthRequest="120" 
 					Grid.Row="0" Grid.Column="0"/>
 
-			<Label x:Name="DesciptionLabel" Text="{Binding DescriptionMessage}" HorizontalOptions="Center" Font="Arial, 20" Grid.Row="1" Grid.Column="0">
-				<Label.TextColor>
-	                <OnPlatform x:TypeArguments="Color"
-	                    Android="Black"
-	                    WinPhone="Black"
-	                    iOS="Black">
-	                </OnPlatform>
-	            </Label.TextColor>
-	        </Label>
+			<Label x:Name="DesciptionLabel" Text="{Binding DescriptionMessage}" TextColor="Black" HorizontalOptions="Center" Font="Arial, 20" Grid.Row="1" Grid.Column="0"/>
 
-			<Button x:Name="LocationButton" Text="{Binding FilesTitle}" Command="{Binding LocationCommand}" BackgroundColor="Silver" Grid.Row="2" Grid.Column="0">
-				<Button.TextColor>
-	                <OnPlatform x:TypeArguments="Color"
-	                    Android="Navy"
-	                    WinPhone="Blue"
-	                    iOS="Black">
-	                </OnPlatform>
-	            </Button.TextColor>
-	        </Button>
-
-			<Button x:Name="ExitButton" Text="{Binding ExitTitle}" Command="{Binding ExitCommand}" BackgroundColor="Silver" Grid.Row="3" Grid.Column="0">
-				<Button.TextColor>
-	                <OnPlatform x:TypeArguments="Color"
-	                    Android="Navy"
-	                    WinPhone="Blue"
-	                    iOS="Black">
-	                </OnPlatform>
-	            </Button.TextColor>
-	        </Button> 
+			<Button x:Name="LocationButton" Text="{Binding FilesTitle}" Command="{Binding LocationCommand}" Style="{StaticResource ButtonStyle}" Grid.Row="2" Grid.Column="0"/>
+			
+			<Button x:Name="ExitButton" Text="{Binding ExitTitle}" Command="{Binding ExitCommand}" Style="{StaticResource ButtonStyle}" Grid.Row="3" Grid.Column="0"/>
 		</Grid>
 	</ui:ExtendedContentPage.Content>
 </ui:ExtendedContentPage>

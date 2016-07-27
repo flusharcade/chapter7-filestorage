@@ -14,7 +14,6 @@
 			<Grid.RowDefinitions>
 				<RowDefinition Height="*"/>
 				<RowDefinition Height="60"/>
-				<RowDefinition Height="60"/>
 			</Grid.RowDefinitions>
 
 			<Grid.ColumnDefinitions>
@@ -35,18 +34,14 @@
 				</Label.FormattedText>
 	        </Label>
 
-			<controls:CarouselView x:Name="CarouselView" 
-				ItemsSource="{Binding Files}"
-				ItemTemplate="{StaticResource CarouselTemplate}"
+			<controls:CarouselView x:Name="CarouselView"
+				SelectedCommand="{Binding EditFileCommand}"
 				Grid.Row="0" Grid.Column="0"/>
 			
 			<Button x:Name="CreateFileButton" Command="{Binding CreateFileCommand}" 
-				Text="{x:Static resx:LabelResources.CreateFileLabel}" 
+				Text="{x:Static resx:LabelResources.CreateFileLabel}"
+				Style="{StaticResource ButtonStyle}"
 				Grid.Row="1" Grid.Column="0"/>
-
-			<Button x:Name="EditFileButton" Command="{Binding EditFileCommand}"
-				Text="{x:Static resx:LabelResources.EditFileLabel}" 
-				Grid.Row="2" Grid.Column="0"/>
 		</Grid>
 
 	</ui:ExtendedContentPage.Content>

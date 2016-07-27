@@ -13,20 +13,39 @@
 
 			<!-- data templates for carousel view -->
 			<DataTemplate x:Key="CarouselTemplate">
-               <Grid BackgroundColor="Gray">
-		          <Grid.RowDefinitions>
-		            <RowDefinition Height="*"/>
-		            <RowDefinition Height="Auto"/>
-		          </Grid.RowDefinitions>
-		          <Image x:Name="FileImage" Source="file.png" Grid.RowSpan="2" Aspect="AspectFill"/>
-		          <StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
-		            <Label TextColor="White" Text="{Binding FileName}" 
+				<Grid BackgroundColor="Gray">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="80"/>
+					</Grid.RowDefinitions>
+					
+					<Image x:Name="FileImage" Source="file.png" Grid.RowSpan="2" Aspect="AspectFill"/>
+					
+					<StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
+						<Label TextColor="White" Text="{Binding FileName}" 
 							FontSize="16" 
 							HorizontalOptions="Center" 
 							VerticalOptions="CenterAndExpand"/>
-		          </StackLayout>
-		        </Grid>
-            </DataTemplate>
+					</StackLayout>
+				</Grid>
+			</DataTemplate>
+
+			<!-- styles -->
+			<Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="TextColor">
+					<Setter.Value>
+		                <OnPlatform x:TypeArguments="Color"
+		                    Android="NavyBlue"
+		                    WinPhone="Black"
+		                    iOS="Black">
+		                </OnPlatform>
+            		</Setter.Value>
+				</Setter>
+				<Setter Property="FontSize" Value="20" />
+				<Setter Property="FontFamily" Value="Arial" />
+				<Setter Property="BackgroundColor" Value="Silver" />
+            </Style>
+
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>	

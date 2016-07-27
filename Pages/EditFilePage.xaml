@@ -4,7 +4,7 @@
 	xmlns:resx="clr-namespace:FileStorage.Portable.Resources;assembly=FileStorage.Portable"
 	xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
   	xmlns:ui="clr-namespace:FileStorage.UI;assembly=Xamarin.Forms"
-	xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"		
+	xmlns:beh="clr-namespace:FileStorage.Behaviours;assembly=FileStorage"
 	x:Class="FileStorage.Pages.EditFilePage"
 	BackgroundColor="White"
 	Title="Files">
@@ -24,7 +24,11 @@
 
 			<Entry x:Name="FileNameLabel" Text="{Binding FileName, Mode=TwoWay}"
 				BackgroundColor="Silver"
-				Grid.Row="0" Grid.Column="0"/>
+				Grid.Row="0" Grid.Column="0">
+				<Entry.Behaviors>
+					<beh:LowercaseEntryBehaviour/>			
+				</Entry.Behaviors>
+			</Entry>
 	
 			<Editor x:Name="ContentsEditor" Text="{Binding Contents, Mode=TwoWay}"
 				BackgroundColor="Silver"
@@ -32,10 +36,12 @@
 
 			<Button x:Name="SaveFileButton" Command="{Binding SaveFileCommand}" 
 				Text="{x:Static resx:LabelResources.SaveFileLabel}" 
+				Style="{StaticResource ButtonStyle}"
 				Grid.Row="2" Grid.Column="0"/>
 
 			<Button x:Name="DeleteFileButton" Command="{Binding DeleteFileCommand}"
-				Text="{x:Static resx:LabelResources.DeleteFileLabel}" 
+				Text="{x:Static resx:LabelResources.DeleteFileLabel}"
+				Style="{StaticResource ButtonStyle}"
 				Grid.Row="3" Grid.Column="0"/>
 		</Grid>
 

@@ -6,10 +6,10 @@
 
 namespace FileStorage.Portable.DataAccess.Storable
 {
-    /// <summary>
+	/// <summary>
 	/// The storable interface.
-    /// </summary>
-    public interface IStorable
+	/// </summary>
+	public interface IStorable
     {
         #region Public Properties
 

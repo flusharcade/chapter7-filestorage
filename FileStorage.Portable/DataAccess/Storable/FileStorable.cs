@@ -8,29 +8,21 @@ namespace FileStorage.Portable.DataAccess.Storable
 {
 	using Newtonsoft.Json;
 
-    /// <summary>
-    /// File storable.
-    /// </summary>
+	using SQLite.Net.Attributes;
+
+	/// <summary>
+	/// File storable.
+	/// </summary>
 	public class FileStorable : IStorable
     {
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:FileStorage.Portable.DataAccess.Storable.FileStorable"/> class.
-        /// </summary>
-		public FileStorable()
-        {
-        }
-
-        #endregion
-
         #region Public Properties
 
 		/// <summary>
 		/// Gets or sets the key.
 		/// </summary>
 		/// <value>The key.</value>
-        public string Key { get; set; }
+      	[PrimaryKey]
+		public string Key { get; set; }
 
 		/// <summary>
 		/// Gets or sets the data.

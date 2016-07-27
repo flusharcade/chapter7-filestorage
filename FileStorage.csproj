@@ -50,8 +50,13 @@
     <Compile Include="Pages\EditFilePage.xaml.cs">
       <DependentUpon>EditFilePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CarouselView.cs" />
-    <Compile Include="Controls\CarouselViewOld.cs" />
+    <Compile Include="Controls\CarouselLayout.cs" />
+    <Compile Include="Controls\CarouselScroll.cs" />
+    <Compile Include="Controls\CarouselView.xaml.cs">
+      <DependentUpon>CarouselView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GestureView.cs" />
+    <Compile Include="Behaviours\LowercaseEntryBehaviour.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="packages\Xamarin.Forms.2.3.1.111-pre2\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('packages\Xamarin.Forms.2.3.1.111-pre2\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -105,6 +110,9 @@
     <EmbeddedResource Include="Pages\EditFilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CarouselView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="FileStorage.Portable\FileStorage.Portable.csproj">
@@ -115,5 +123,6 @@
   <ItemGroup>
     <Folder Include="Converters\" />
     <Folder Include="Controls\" />
+    <Folder Include="Behaviours\" />
   </ItemGroup>
 </Project>

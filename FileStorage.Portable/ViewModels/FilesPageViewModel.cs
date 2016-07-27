@@ -14,6 +14,7 @@ namespace FileStorage.Portable.ViewModels
 	using System.Collections.ObjectModel;
 	using System.Collections.Generic;
 	using System.Threading;
+	using System.Reactive.Subjects;
 
 	using FileStorage.Portable.UI;
 	using FileStorage.Portable.Enums;
@@ -61,6 +62,12 @@ namespace FileStorage.Portable.ViewModels
 		#endregion
 
 		#region Public Properties
+
+		/// <summary>
+		/// Gets the data changes.
+		/// </summary>
+		/// <value>The data changes.</value>
+		public Subject<DataChange> DataChanges { get; private set; }
 
 		/// <summary>
 		/// Gets or sets the create command.
@@ -135,7 +142,7 @@ namespace FileStorage.Portable.ViewModels
 		/// Gets or sets the files.
 		/// </summary>
 		/// <value>The files.</value>
-		public ObservableCollection<FileItemViewModel> Files { get; set; }
+		public ObservableCollection<FileItemViewModel> Cells { get; set; }
 
 		#endregion
 
@@ -146,23 +153,29 @@ namespace FileStorage.Portable.ViewModels
 		/// </summary>
 		/// <param name="navigation">Navigation.</param>
 		/// <param name="commandFactory">Command factory.</param>
-		public FilesPageViewModel(INavigationService navigation, Func<Action, ICommand> commandFactory,
+		public FilesPageViewModel(INavigationService navigation, Func<Action<object>, ICommand> commandFactory,
 								   IMethods methods, ISQLiteStorage storage, Func<FileItemViewModel> fileFactory)
 			: base(navigation, methods)
 		{
+			DataChanges = new Subject<DataChange>();
+
 			// retrieve main thread context
 			_context = SynchronizationContext.Current;
 			_storage = storage;
 			_fileFactory = fileFactory;
 
-			Files = new ObservableCollection<FileItemViewModel>();
+			Cells = new ObservableCollection<FileItemViewModel>();
 
-			_editFileCommand = commandFactory(async () =>
+			_editFileCommand = commandFactory(async (file) =>
 			{
-				await Navigation.Navigate(PageNames.EditFilePage, null);
+				await Navigation.Navigate(PageNames.EditFilePage, new Dictionary<string, object>()
+				{
+					{"filename", (file as FileItemViewModel).FileName},
+					{"contents", (file as FileItemViewModel).Contents}
+				});
 			});
 
-			_createFileCommand = commandFactory(async () =>
+			_createFileCommand = commandFactory(async (obj) =>
 			{
 				var fileName = await ShowEntryAlert("Enter file name:");
 
@@ -188,18 +201,24 @@ namespace FileStorage.Portable.ViewModels
 		{
 			_context.Post(async (obj) =>
 			{
-				var files = await _storage.GetTable<FileStorable>(CancellationToken.None);
+				Cells.Clear();
 
-				Files.Clear();
+				var files = await _storage.GetTable<FileStorable>(CancellationToken.None);
 
 				foreach (var file in files)
 				{
 					var fileModel = _fileFactory();
 					fileModel.Apply(file);
-					Files.Add(fileModel);
+					Cells.Add(fileModel);
 				}
 
-				AnyFiles = Files.Any();
+				AnyFiles = Cells.Any();
+
+				DataChanges.OnNext(new DataChange()
+				{
+					SizeChanged = true
+				});
+
 			}, null);
 		}
 

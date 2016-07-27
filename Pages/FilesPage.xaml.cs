@@ -38,6 +38,7 @@ namespace FileStorage.Pages
 		{
 			_viewModel = model;
 			BindingContext = model;
+
 			InitializeComponent ();
 
 			Appearing += HandleAppearing;
