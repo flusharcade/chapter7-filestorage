@@ -55,6 +55,8 @@ namespace FileStorage.UI
 
 		#endregion
 
+		#region Private Methods
+
 		/// <summary>
 		/// Gets the page.
 		/// </summary>
@@ -74,5 +76,7 @@ namespace FileStorage.UI
 					return null;
 			}
 		}
+
+		#endregion
 	}
 }

@@ -23,11 +23,6 @@ namespace FileStorage.Portable.ViewModels
 	public class MainPageViewModel : ViewModelBase
 	{
 		#region Private Properties
-	
-		/// <summary>
-		/// The methods.
-		/// </summary>
-		private readonly IMethods _methods;
 
 		/// <summary>
 		/// The description message.

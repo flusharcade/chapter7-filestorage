@@ -19,27 +19,60 @@ namespace FileStorage.iOS.Renderers.GestureView
 
 	using FileStorage.Controls;
 
-    /// <summary>
-    /// Swipe layout renderer.
-    /// </summary>
+	/// <summary>
+	/// Gesture layout renderer.
+	/// </summary>
 	public class GestureLayoutRenderer : ViewRenderer<GestureView, GestureViewiOS>
     {
-		private GestureViewiOS swipeViewIOS;
+		#region Private Properties
 
+		/// <summary>
+		/// The swipe view ios.
+		/// </summary>
+		private GestureViewiOS _swipeViewIOS;
+
+		/// <summary>
+		/// The gestures added.
+		/// </summary>
+		private bool gesturesAdded;
+
+		#endregion
+
+		#region Constructors
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:FileStorage.iOS.Renderers.GestureView.GestureLayoutRenderer"/> class.
+		/// </summary>
 		public GestureLayoutRenderer()
 		{
-			this.swipeViewIOS = new GestureViewiOS ();
+			_swipeViewIOS = new GestureViewiOS ();
 		}
 
+		#endregion
+
+		#region Protected Methods
+
+		/// <summary>
+		/// Called when element changes.
+		/// </summary>
+		/// <returns>The element changed.</returns>
+		/// <param name="e">E.</param>
 		protected override void OnElementChanged (ElementChangedEventArgs<GestureView> e)
 		{
 			base.OnElementChanged (e);
 
-			if (this.Element != null) 
+			if (Control == null)
 			{
-				this.swipeViewIOS.InitGestures (this.Element);
-				this.SetNativeControl (this.swipeViewIOS);
+				SetNativeControl(_swipeViewIOS);
+			}
+
+			if (Element != null && !gesturesAdded)
+			{
+				_swipeViewIOS.InitGestures(Element);
+				gesturesAdded = true;
 			}
 		}
+
+		#endregion
     }
 }

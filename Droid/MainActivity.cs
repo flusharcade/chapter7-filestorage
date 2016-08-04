@@ -12,8 +12,6 @@ namespace FileStorage.Droid
 
 	using FileStorage.Droid.Modules;
 
-	//using FileStorage.Shared.Modules;
-
 	using FileStorage.Modules;
 
 	using FileStorage.Portable.Modules;
@@ -55,7 +53,6 @@ namespace FileStorage.Droid
 		{
 			IoC.CreateContainer ();
 			IoC.RegisterModule (new DroidModule());
-			//IoC.RegisterModule (new SharedModule(false));
 			IoC.RegisterModule (new XamFormsModule());
 			IoC.RegisterModule (new PortableModule());
 			IoC.StartContainer ();

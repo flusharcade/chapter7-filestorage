@@ -16,7 +16,7 @@ namespace FileStorage.iOS.Logging
 	/// </summary>
 	public class LoggeriOS : ILogger
 	{
-		#region IDebug implementation
+		#region Public Methods
 
 		/// <summary>
 		/// Writes the line.
@@ -41,5 +41,4 @@ namespace FileStorage.iOS.Logging
 
 		#endregion
 	}
-
 }

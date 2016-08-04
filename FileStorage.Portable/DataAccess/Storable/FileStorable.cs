@@ -25,29 +25,11 @@ namespace FileStorage.Portable.DataAccess.Storable
 		public string Key { get; set; }
 
 		/// <summary>
-		/// Gets or sets the data.
-		/// </summary>
-		/// <value>The data.</value>
-		public string Data { get; set; }
-
-		/// <summary>
 		/// Gets or sets the contents.
 		/// </summary>
 		/// <value>The contents.</value>
 		public string Contents { get; set; }
 
         #endregion
-
-		#region Public Methods
-
-		/// <summary>
-		/// Serialize this instance.
-		/// </summary>
-		public void Serialize ()
-		{
-			Data = JsonConvert.SerializeObject (this);
-		}
-
-		#endregion
     }
 }

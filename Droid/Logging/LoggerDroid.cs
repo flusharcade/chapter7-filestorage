@@ -9,6 +9,8 @@ namespace FileStorage.Droid.Logging
 	using System;
 	using System.Diagnostics;
 
+	using Android.Util;
+
 	using FileStorage.Portable.Logging;
 
 	/// <summary>
@@ -25,7 +27,7 @@ namespace FileStorage.Droid.Logging
 		/// <param name="text">Text.</param>
 		public void WriteLine(string text)
 		{
-			Debug.WriteLine(text);
+			Log.WriteLine(LogPriority.Info, text, null);
 		}
 
 		/// <summary>
@@ -36,7 +38,7 @@ namespace FileStorage.Droid.Logging
 		/// <param name="args">Arguments.</param>
 		public void WriteLineTime(string text, params object[] args)
 		{
-			Debug.WriteLine(DateTime.Now.Ticks + " " + String.Format(text, args));
+			Log.WriteLine(LogPriority.Info, DateTime.Now.Ticks + " " + String.Format(text, args), null);
 		}
 
 		#endregion

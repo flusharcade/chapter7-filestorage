@@ -2,7 +2,6 @@
 <ui:ExtendedContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 	xmlns:resx="clr-namespace:FileStorage.Portable.Resources;assembly=FileStorage.Portable"
-	xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
   	xmlns:ui="clr-namespace:FileStorage.UI;assembly=Xamarin.Forms"
 	xmlns:beh="clr-namespace:FileStorage.Behaviours;assembly=FileStorage"
 	x:Class="FileStorage.Pages.EditFilePage"
@@ -44,6 +43,5 @@
 				Style="{StaticResource ButtonStyle}"
 				Grid.Row="3" Grid.Column="0"/>
 		</Grid>
-
 	</ui:ExtendedContentPage.Content>
 </ui:ExtendedContentPage>

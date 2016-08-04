@@ -18,7 +18,6 @@ namespace FileStorage.Portable.DataAccess.Storage
 
 	using FileStorage.Portable.Threading;
 	using FileStorage.Portable.DataAccess.Storable;
-	using FileStorage.Portable.DataAccess;
 	using FileStorage.Portable.Logging;
 
 	/// <summary>
@@ -26,6 +25,8 @@ namespace FileStorage.Portable.DataAccess.Storage
 	/// </summary>
 	public class SQLiteStorage : ISQLiteStorage
 	{
+		#region Private Properties
+
 		/// <summary>
 		/// The async lock.
 		/// </summary>
@@ -42,7 +43,7 @@ namespace FileStorage.Portable.DataAccess.Storage
 		private SQLiteConnectionWithLock _conn;
 
 		/// <summary>
-		/// The db async.
+		/// The db async conn.
 		/// </summary>
 		private SQLiteAsyncConnection _dbAsyncConn;
 
@@ -66,10 +67,15 @@ namespace FileStorage.Portable.DataAccess.Storage
 		/// </summary>
 		private readonly string _tag;
 
+		#endregion
+
+		#region Constructors
+
 		/// <summary>
-		/// Initializes a new instance of the <see cref="T:MyCareManager.DataAccess.Sqlite.Storable.SQLiteStorage"/> class.
+		/// Initializes a new instance of the <see cref="T:FileStorage.Portable.DataAccess.Storage.SQLiteStorage"/> class.
 		/// </summary>
 		/// <param name="sqliteSetup">Sqlite setup.</param>
+		/// <param name="log">Log.</param>
 		public SQLiteStorage(ISQLiteSetup sqliteSetup, ILogger log)
 		{
 			_dbPath = sqliteSetup?.DatabasePath;
@@ -79,10 +85,14 @@ namespace FileStorage.Portable.DataAccess.Storage
 			_tag = $"{GetType()} ";
 		}
 
+		#endregion
+
+		#region Public Methods
+
 		/// <summary>
-		/// Gets the async connection.
+		/// Creates the SQL ite async connection.
 		/// </summary>
-		/// <returns>The async connection.</returns>
+		/// <returns>The SQL ite async connection.</returns>
 		public void CreateSQLiteAsyncConnection()
 		{
 			var connectionFactory = new Func<SQLiteConnectionWithLock>(() =>
@@ -103,6 +113,7 @@ namespace FileStorage.Portable.DataAccess.Storage
 		/// Creates the table.
 		/// </summary>
 		/// <returns>The table.</returns>
+		/// <param name="token">Token.</param>
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
 		public async Task CreateTable<T>(CancellationToken token) where T : class, IStorable, new()
 		{
@@ -148,6 +159,7 @@ namespace FileStorage.Portable.DataAccess.Storage
 		/// Drops the table.
 		/// </summary>
 		/// <returns>The table.</returns>
+		/// <param name="token">Token.</param>
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
 		public async Task DropTable<T>(CancellationToken token) where T : class, IStorable, new()
 		{
@@ -161,6 +173,8 @@ namespace FileStorage.Portable.DataAccess.Storage
 		/// Inserts the object.
 		/// </summary>
 		/// <returns>The object.</returns>
+		/// <param name="item">Item.</param>
+		/// <param name="token">Token.</param>
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
 		public async Task InsertObject<T>(T item, CancellationToken token) where T : class, IStorable, new()
 		{
@@ -221,9 +235,9 @@ namespace FileStorage.Portable.DataAccess.Storage
 		}
 
 		/// <summary>
-		/// Removes all table objects.
+		/// Clears the table.
 		/// </summary>
-		/// <returns>The all table objects.</returns>
+		/// <returns>The table.</returns>
 		/// <param name="token">Token.</param>
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
 		public async Task ClearTable<T>(CancellationToken token) where T : class, IStorable, new()
@@ -238,6 +252,8 @@ namespace FileStorage.Portable.DataAccess.Storage
 		/// Deletes the object.
 		/// </summary>
 		/// <returns>The object.</returns>
+		/// <param name="item">Item.</param>
+		/// <param name="token">Token.</param>
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
 		public async Task DeleteObject<T>(T item, CancellationToken token)
 		{
@@ -296,5 +312,7 @@ namespace FileStorage.Portable.DataAccess.Storage
 				}
 			}
 		}
+
+		#endregion
 	}
 }

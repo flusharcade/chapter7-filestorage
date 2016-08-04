@@ -3,14 +3,17 @@
 //   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-using Xamarin.Forms;
-using Android.Widget;
 
 namespace FileStorage.Droid.Extras
 {
 	using System.Threading.Tasks;
+
+	using Xamarin.Forms;
+
 	using Android.App;
 	using Android.Views;
+	using Android.Widget;
+
 	using FileStorage.Portable.Extras;
 
 	/// <summary>

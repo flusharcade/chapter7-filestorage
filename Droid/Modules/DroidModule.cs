@@ -9,7 +9,6 @@ namespace FileStorage.Droid.Modules
 	using SQLite.Net.Interop;
 	using SQLite.Net.Platform.XamarinAndroid;
 
-
 	using Autofac;
 
 	using FileStorage.Droid.Extras;

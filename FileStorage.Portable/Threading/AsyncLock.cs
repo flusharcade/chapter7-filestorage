@@ -15,6 +15,8 @@ namespace FileStorage.Portable.Threading
 	/// </summary>
 	public class AsyncLock
 	{
+		#region Private Properties
+
 		/// <summary>
 		/// The m semaphore.
 		/// </summary>
@@ -25,6 +27,10 @@ namespace FileStorage.Portable.Threading
 		/// </summary>
 		private readonly Task<Releaser> m_releaser;
 
+		#endregion
+
+		#region Constructors
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:TelstraHealth.Portable.Threading.AsyncLock"/> class.
 		/// </summary>
@@ -33,6 +39,10 @@ namespace FileStorage.Portable.Threading
 			m_semaphore = new AsyncSemaphore(1);
 			m_releaser = Task.FromResult(new Releaser(this));
 		}
+
+		#endregion
+
+		#region Public Methods
 
 		/// <summary>
 		/// Locks the async.
@@ -63,5 +73,7 @@ namespace FileStorage.Portable.Threading
 					m_toRelease.m_semaphore.Release();
 			}
 		}
+
+		#endregion
 	}
 }

@@ -18,21 +18,6 @@ namespace FileStorage.Portable.DataAccess.Storable
         /// </summary>
         string Key { get; set; }
 
-		/// <summary>
-		/// Gets or sets the data.
-		/// </summary>
-		/// <value>The data.</value>
-		string Data { get; set; }
-
-		#endregion
-
-		#region Methods
-
-		/// <summary>
-		/// Serialize this instance.
-		/// </summary>
-		void Serialize();
-
 		#endregion
 	}
 }

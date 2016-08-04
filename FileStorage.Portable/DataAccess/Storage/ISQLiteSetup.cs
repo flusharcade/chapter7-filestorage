@@ -13,8 +13,20 @@ namespace FileStorage.Portable.DataAccess.Storage
 	/// </summary>
 	public interface ISQLiteSetup
 	{
+		#region Properties
+
+		/// <summary>
+		/// Gets or sets the database path.
+		/// </summary>
+		/// <value>The database path.</value>
 		string DatabasePath { get; set; }
 
+		/// <summary>
+		/// Gets or sets the platform.
+		/// </summary>
+		/// <value>The platform.</value>
 		ISQLitePlatform Platform { get; set; }
+
+		#endregion
 	}
 }

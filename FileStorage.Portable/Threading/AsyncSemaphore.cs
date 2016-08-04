@@ -15,6 +15,8 @@ namespace FileStorage.Portable.Threading
 	/// </summary>
 	public class AsyncSemaphore
 	{
+		#region Private Properties
+
 		/// <summary>
 		/// The s completed.
 		/// </summary>
@@ -30,6 +32,10 @@ namespace FileStorage.Portable.Threading
 		/// </summary>
 		private int m_currentCount;
 
+		#endregion
+
+		#region Constructors
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:TelstraHealth.Portable.Threading.AsyncSemaphore"/> class.
 		/// </summary>
@@ -39,6 +45,10 @@ namespace FileStorage.Portable.Threading
 			if (initialCount < 0) throw new ArgumentOutOfRangeException("initialCount");
 			m_currentCount = initialCount;
 		}
+
+		#endregion
+
+		#region Public Methods
 
 		/// <summary>
 		/// Waits the async.
@@ -80,5 +90,7 @@ namespace FileStorage.Portable.Threading
 			if (toRelease != null)
 				toRelease.SetResult(true);
 		}
+
+		#endregion
 	}
 }

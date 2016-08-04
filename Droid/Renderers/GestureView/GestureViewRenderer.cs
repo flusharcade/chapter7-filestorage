@@ -20,6 +20,8 @@ namespace FileStorage.Droid.Renderers.GestureView
 	/// </summary>
 	public class GestureViewRenderer : ViewRenderer<GestureView, LinearLayout>
 	{
+		#region Private Properties
+
 		/// <summary>
 		/// The layout.
 		/// </summary>
@@ -35,8 +37,12 @@ namespace FileStorage.Droid.Renderers.GestureView
 		/// </summary>
 		private readonly GestureDetector _detector;
 
+		#endregion
+
+		#region Constructors
+
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Hoverboard.Droid.Renderers.GestureViewRenderer"/> class.
+		/// Initializes a new instance of the <see cref="T:FileStorage.Droid.Renderers.GestureView.GestureViewRenderer"/> class.
 		/// </summary>
 		public GestureViewRenderer ()
 		{
@@ -46,9 +52,14 @@ namespace FileStorage.Droid.Renderers.GestureView
 			_layout = new LinearLayout (Context);
 		}
 
+		#endregion
+
+		#region Protected Methods
+
 		/// <summary>
-		/// Raises the element changed event.
+		/// Called when the element changes.
 		/// </summary>
+		/// <returns>The element changed.</returns>
 		/// <param name="e">E.</param>
 		protected override void OnElementChanged (ElementChangedEventArgs<GestureView> e)
 		{
@@ -74,9 +85,14 @@ namespace FileStorage.Droid.Renderers.GestureView
 			SetNativeControl (_layout);
 		}
 
+		#endregion
+
+		#region Private Methods
+
 		/// <summary>
 		/// Handles the touch.
 		/// </summary>
+		/// <returns>The touch.</returns>
 		/// <param name="sender">Sender.</param>
 		/// <param name="e">E.</param>
 		private void HandleTouch (object sender, TouchEventArgs e)
@@ -87,11 +103,14 @@ namespace FileStorage.Droid.Renderers.GestureView
 		/// <summary>
 		/// Handles the generic motion.
 		/// </summary>
+		/// <returns>The generic motion.</returns>
 		/// <param name="sender">Sender.</param>
 		/// <param name="e">E.</param>
 		private void HandleGenericMotion (object sender, GenericMotionEventArgs e)
 		{
 			_detector.OnTouchEvent (e.Event);
 		}
+
+		#endregion
 	}
 }

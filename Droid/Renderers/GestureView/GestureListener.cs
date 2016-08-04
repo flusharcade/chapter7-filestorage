@@ -17,6 +17,8 @@ namespace FileStorage.Droid.Renderers.GestureView
 	/// </summary>
 	public class GestureListener : GestureDetector.SimpleOnGestureListener
 	{
+		#region Private Properties
+
 		/// <summary>
 		/// The SWIPE_THRESHOLD.
 		/// </summary>
@@ -32,6 +34,10 @@ namespace FileStorage.Droid.Renderers.GestureView
 		/// </summary>
 		private GestureView _swipeView;
 
+		#endregion
+
+		#region Constructors
+
 		/// <summary>
 		/// Inits the core swipe view.
 		/// </summary>
@@ -40,6 +46,10 @@ namespace FileStorage.Droid.Renderers.GestureView
 		{
 			_swipeView = swipeView;
 		}
+
+		#endregion
+
+		#region Public Overrides
 
 		/// <summary>
 		/// Raises the long press event.
@@ -155,5 +165,7 @@ namespace FileStorage.Droid.Renderers.GestureView
 		{
 			return base.OnSingleTapConfirmed (e);
 		}
+
+		#endregion
 	}
 }

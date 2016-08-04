@@ -7,8 +7,6 @@
 namespace FileStorage.Controls
 {
 	using System;
-	using System.Linq;
-	using System.Reactive.Linq;
 	using System.Collections.Generic;
 
 	using Xamarin.Forms;
@@ -29,6 +27,8 @@ namespace FileStorage.Controls
 
 		#endregion
 
+		#region Public Properties
+
 		/// <summary>
 		/// Gets or sets the item template.
 		/// </summary>
@@ -42,31 +42,10 @@ namespace FileStorage.Controls
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="T:MyCareManager.XamForms.Controls.CarouselScroll.WrapGrid"/> class.
-		/// </summary>
-		public CarouselScroll()
-		{
-			Orientation = ScrollOrientation.Horizontal;
-
-			_carouselLayout = new CarouselLayout();
-			Content = _carouselLayout;
-		}
-
-		/// <summary>
-		/// Gets the selected item.
-		/// </summary>
-		/// <returns>The selected item.</returns>
-		/// <param name="selected">Selected.</param>
-		public ICell GetSelectedItem(int selected)
-		{
-			return _carouselLayout[selected];
-		}
-
-		/// <summary>
 		/// The items source property.
 		/// </summary>
-		public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create<CarouselLayout, IEnumerable<ICell>>(o => o.ItemsSource,
-			default(IEnumerable<ICell>), propertyChanged: (bindable, oldvalues, newValues) =>
+		public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create<CarouselLayout, IEnumerable<object>>(o => o.ItemsSource,
+			default(IEnumerable<object>), propertyChanged: (bindable, oldvalues, newValues) =>
 		{
 			((CarouselScroll)bindable)._carouselLayout.ItemsSource = newValues;
 		});
@@ -82,6 +61,39 @@ namespace FileStorage.Controls
 			{
 				((CarouselScroll)bindable)._carouselLayout.SubscribeDataChanges((IObservable<DataChange>)newValue);
 			});
+
+		#endregion
+
+		#region Constructors
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:MyCareManager.XamForms.Controls.CarouselScroll.WrapGrid"/> class.
+		/// </summary>
+		public CarouselScroll()
+		{
+			Orientation = ScrollOrientation.Horizontal;
+
+			_carouselLayout = new CarouselLayout();
+			Content = _carouselLayout;
+		}
+
+		#endregion
+
+		#region Public Methods
+
+		/// <summary>
+		/// Gets the selected item.
+		/// </summary>
+		/// <returns>The selected item.</returns>
+		/// <param name="selected">Selected.</param>
+		public object GetSelectedItem(int selected)
+		{
+			return _carouselLayout[selected];
+		}
+
+		#endregion
+
+		#region Protected Methods
 
 		/// <summary>
 		/// Layouts the children.
@@ -105,5 +117,7 @@ namespace FileStorage.Controls
 				_carouselLayout.ComputeLayout(width, height);
 			}
 		}
+
+		#endregion
 	}
 }

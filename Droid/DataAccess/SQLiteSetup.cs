@@ -18,14 +18,34 @@ namespace FileStorage.Droid.DataAccess
 	/// </summary>
 	public class SQLiteSetup : ISQLiteSetup
 	{
+		#region Public Properties
+
+		/// <summary>
+		/// Gets or sets the database path.
+		/// </summary>
+		/// <value>The database path.</value>
 		public string DatabasePath { get; set; }
 
+		/// <summary>
+		/// Gets or sets the platform.
+		/// </summary>
+		/// <value>The platform.</value>
 		public ISQLitePlatform Platform { get; set; }
 
+		#endregion
+
+		#region Constructors
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:FileStorage.Droid.DataAccess.SQLiteSetup"/> class.
+		/// </summary>
+		/// <param name="platform">Platform.</param>
 		public SQLiteSetup(ISQLitePlatform platform)
 		{
 			DatabasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "filestorage.db3"); ;
 			Platform = platform;
 		}
+
+		#endregion
 	}
 }

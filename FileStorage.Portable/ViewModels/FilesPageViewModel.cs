@@ -251,7 +251,6 @@ namespace FileStorage.Portable.ViewModels
 		/// <param name="parameters">Parameters.</param>
 		protected override async Task LoadAsync (IDictionary<string, object> parameters)
 		{
-			UpdateFiles();
 		}
 
 		#endregion

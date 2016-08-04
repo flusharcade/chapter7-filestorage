@@ -15,14 +15,12 @@ namespace FileStorage.Controls
 
 	using FileStorage.Portable.UI;
 
+	/// <summary>
+	/// Carousel layout.
+	/// </summary>
 	public class CarouselLayout : Layout<View>
 	{
 		#region Private Properties
-
-		/// <summary>
-		/// The layout cache.
-		/// </summary>
-		private Dictionary<View, SizeRequest> layoutCache = new Dictionary<View, SizeRequest>();
 
 		/// <summary>
 		/// The data changes subscription.
@@ -42,7 +40,7 @@ namespace FileStorage.Controls
 		/// Gets the <see cref="T:FileStorage.Controls.CarouselLayout"/> at the specified index.
 		/// </summary>
 		/// <param name="index">Index.</param>
-		public ICell this[int index]
+		public object this[int index]
 		{
 			get
 			{
@@ -64,9 +62,11 @@ namespace FileStorage.Controls
 		/// Gets or sets the items source.
 		/// </summary>
 		/// <value>The items source.</value>
-		public IEnumerable<ICell> ItemsSource { get; set; }
+		public IEnumerable<object> ItemsSource { get; set; }
 
 		#endregion
+
+		#region Public Methods
 
 		/// <summary>
 		/// Subscribes the data changes.
@@ -86,13 +86,29 @@ namespace FileStorage.Controls
 		}
 
 		/// <summary>
+		/// Computes the layout.
+		/// </summary>
+		/// <returns>The layout.</returns>
+		/// <param name="widthConstraint">Width constraint.</param>
+		/// <param name="heightConstraint">Height constraint.</param>
+		public IEnumerable<Rectangle> ComputeLayout(double widthConstraint, double heightConstraint)
+		{
+			List<Row> layout = ComputeNiaveLayout(widthConstraint, heightConstraint);
+
+			return layout.SelectMany(s => s);
+		}
+
+		#endregion
+
+		#region Protected Methods
+
+		/// <summary>
 		/// Ons the child measure invalidated.
 		/// </summary>
 		/// <returns>The child measure invalidated.</returns>
 		protected override void OnChildMeasureInvalidated()
 		{
 			base.OnChildMeasureInvalidated();
-			layoutCache.Clear();
 		}
 
 		/// <summary>
@@ -133,6 +149,10 @@ namespace FileStorage.Controls
 				LayoutChildIntoBoundingRegion(child, region);
 			}
 		}
+
+		#endregion
+
+		#region Private Methods
 
 		/// <summary>
 		/// Packs the views.
@@ -196,18 +216,7 @@ namespace FileStorage.Controls
 			return result;
 		}
 
-		/// <summary>
-		/// Computes the layout.
-		/// </summary>
-		/// <returns>The layout.</returns>
-		/// <param name="widthConstraint">Width constraint.</param>
-		/// <param name="heightConstraint">Height constraint.</param>
-		public IEnumerable<Rectangle> ComputeLayout(double widthConstraint, double heightConstraint)
-		{
-			List<Row> layout = ComputeNiaveLayout(widthConstraint, heightConstraint);
-
-			return layout.SelectMany(s => s);
-		}
+		#endregion
 	}
 
 	/// <summary>

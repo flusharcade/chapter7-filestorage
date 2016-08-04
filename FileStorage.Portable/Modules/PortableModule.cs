@@ -3,17 +3,14 @@
 //   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-using FileStorage.Portable.DataAccess.Storage;
 
 namespace FileStorage.Portable.Modules
 {
-	using System;
-
 	using Autofac;
 
 	using FileStorage.Portable.Ioc;
 	using FileStorage.Portable.ViewModels;
-	using FileStorage.Portable.UI;
+	using FileStorage.Portable.DataAccess.Storage;
 
 	/// <summary>
 	/// Portable module.

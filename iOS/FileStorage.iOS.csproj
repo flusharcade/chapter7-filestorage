@@ -147,10 +147,10 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Modules\iOSModule.cs" />
     <Compile Include="Extras\IOSMethods.cs" />
-    <Compile Include="DataAccess\SQLiteSetup.cs" />
     <Compile Include="Logging\LoggeriOS.cs" />
     <Compile Include="Renderers\GestureView\GestureViewRenderer.cs" />
     <Compile Include="Renderers\GestureView\GestureViewiOS.cs" />
+    <Compile Include="DataAccess\SQLiteSetup.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
@@ -159,7 +159,6 @@
   <ItemGroup>
     <Folder Include="Modules\" />
     <Folder Include="Extras\" />
-    <Folder Include="DataAccess\" />
     <Folder Include="Logging\" />
     <Folder Include="Renderers\" />
     <Folder Include="Renderers\GestureView\" />

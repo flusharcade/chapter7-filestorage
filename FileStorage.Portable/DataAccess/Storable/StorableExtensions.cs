@@ -4,12 +4,10 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace FileStorage.Portable.DataAccess
+namespace FileStorage.Portable.DataAccess.Storable
 {
 	using System.Reflection;
 	using System.Linq;
-
-	using FileStorage.Portable.DataAccess.Storable;
 
 	/// <summary>
 	/// Storable extensions.
@@ -17,53 +15,6 @@ namespace FileStorage.Portable.DataAccess
 	public static class StorableExtensions
 	{
 		#region Public Methods
-
-		/// <summary>
-		/// Creates the properties string.
-		/// </summary>
-		/// <returns>The properties string.</returns>
-		/// <param name="storable">Storable.</param>
-		public static string CreatePropertiesString(this IStorable storable)
-		{
-			var properties = storable.GetType().GetRuntimeProperties();
-
-			string propetyString = "";
-
-			var index = 0;
-
-			foreach (var property in properties)
-			{
-				propetyString += (index == (properties.Count() - 1)) ? property.Name : property.Name + ", ";
-				index++;
-			}
-
-			return propetyString;
-		}
-
-		/// <summary>
-		/// Creates the property values string.
-		/// </summary>
-		/// <returns>The property values string.</returns>
-		/// <param name="storable">Storable.</param>
-		public static string CreatePropertyValuesString(this IStorable storable)
-		{
-			var properties = storable.GetType().GetRuntimeProperties();
-
-			string propetyString = "";
-
-			var index = 0;
-
-			foreach (var property in properties)
-			{
-				var value = property.GetValue(storable);
-				var valueString = value == null ? "null" : "\"" + value + "\"";
-
-				propetyString += (index == (properties.Count() - 1)) ? valueString : valueString + ", ";
-				index++;
-			}
-
-			return propetyString;
-		}
 
 		/// <summary>
 		/// Creates the insert or replace query.

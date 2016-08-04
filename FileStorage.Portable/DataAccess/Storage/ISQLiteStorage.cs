@@ -17,6 +17,8 @@ namespace FileStorage.Portable.DataAccess.Storage
 	/// </summary>
 	public interface ISQLiteStorage
 	{
+		#region Methods
+
 		/// <summary>
 		/// Creates the SQL ite async connection.
 		/// </summary>
@@ -90,5 +92,7 @@ namespace FileStorage.Portable.DataAccess.Storage
 		/// </summary>
 		/// <returns>The connection.</returns>
 		void CloseConnection();
+
+		#endregion
 	}
 }

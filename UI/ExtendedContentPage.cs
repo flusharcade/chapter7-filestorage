@@ -1,9 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExtendedContentPage.cs" company="Flush Arcade Pty Ltd.">
-//   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
+// <copyright file="ExtendedContentPage.cs" company="Medibio">
+//   Copyright (c) 2016 Mediobio All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-using System.Threading.Tasks;
 
 namespace FileStorage.UI
 {
@@ -18,15 +17,6 @@ namespace FileStorage.UI
 	/// </summary>
 	public class ExtendedContentPage : ContentPage
 	{
-		#region Events
-
-		/// <summary>
-		/// Occurs when touch handler.
-		/// </summary>
-		public event EventHandler AlertFinished;
-
-		#endregion
-
 		#region Private Properties
 
 		/// <summary>
@@ -61,24 +51,6 @@ namespace FileStorage.UI
 		private async void HandleAlert(object sender, string message)
 		{
 			await DisplayAlert("FileStorage", message, "OK");
-		}
-
-		#endregion
-
-		#region Public Methods
-
-		/// <summary>
-		/// Override this method to execute an action when the BindingContext changes.
-		/// </summary>
-		/// <remarks></remarks>
-		protected override void OnBindingContextChanged()
-		{
-			base.OnBindingContextChanged();
-
-			if (BindingContext != null)
-			{
-				_model = (BindingContext as ViewModelBase);
-			}
 		}
 
 		#endregion

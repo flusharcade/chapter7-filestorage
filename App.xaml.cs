@@ -36,36 +36,5 @@ namespace FileStorage
 		}
 
 		#endregion
-
-		#region Protected Methods
-
-		/// <summary>
-		/// Override the starting function
-		/// </summary>
-		/// <returns>The start.</returns>
-		protected override void OnStart()
-		{
-			// Handle when your app starts
-		}
-
-		/// <summary>
-		/// Override the OnSleep function
-		/// </summary>
-		/// <returns>The sleep.</returns>
-		protected override void OnSleep()
-		{
-			// Handle when your app sleeps
-		}
-
-		/// <summary>
-		/// Overrides the OnResume function
-		/// </summary>
-		/// <returns>The resume.</returns>
-		protected override void OnResume()
-		{
-			// Handle when your app resumes
-		}
-
-		#endregion
 	}
 }

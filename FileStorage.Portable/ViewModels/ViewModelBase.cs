@@ -2,7 +2,6 @@
 //   Copyright (c) 2015 Flush Arcade Pty Ltd. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-using FileStorage.Portable.Extras;
 
 namespace FileStorage.Portable.ViewModels
 {
@@ -14,6 +13,7 @@ namespace FileStorage.Portable.ViewModels
 	using System.Runtime.CompilerServices;
 
 	using FileStorage.Portable.UI;
+	using FileStorage.Portable.Extras;
 
 	/// <summary>
 	/// The base class of all view models

@@ -11,8 +11,6 @@ namespace FileStorage.iOS
 
 	using FileStorage.iOS.Modules;
 
-	//using FileStorage.Shared.Modules;
-
 	using FileStorage.Modules;
 
 	using FileStorage.Portable.Ioc;
@@ -55,7 +53,6 @@ namespace FileStorage.iOS
 		{
 			IoC.CreateContainer ();
 			IoC.RegisterModule (new IOSModule());
-			//IoC.RegisterModule (new SharedModule(false));
 			IoC.RegisterModule (new XamFormsModule());
 			IoC.RegisterModule (new PortableModule());
 			IoC.StartContainer ();

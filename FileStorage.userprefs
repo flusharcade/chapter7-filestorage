@@ -1,13 +1,13 @@
 ﻿<Properties StartupItem="Droid/FileStorage.Droid.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Controls/CarouselViewOld.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/FilesPage.xaml">
     <Files>
-      <File FileName="iOS/AppDelegate.cs" Line="1" Column="1" />
-      <File FileName="Controls/CarouselView.cs" Line="1" Column="1" />
-      <File FileName="Controls/CarouselViewOld.cs" Line="1" Column="1" />
+      <File FileName="FileStorage.Portable/ViewModels/FileItemViewModel.cs" Line="108" Column="3" />
+      <File FileName="Pages/FilesPage.xaml" Line="6" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.FileStorage.Droid PreferredExecutionTarget="Android.192.168.58.101:5555" />
+  <MonoDevelop.Ide.ItemProperties.FileStorage.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.192.168.58.101:5555" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="../../Desktop/Development/Telstra/HealthConnex/MyCareManager/MyCareManager.Portable/Repositories/AccountRepository/AccountRepository.cs" line="214" offsetX="986" offsetY="3195" expression="this.webServiceUrl.AbsoluteUri" liveUpdate="False" />
     <Watch file="../../Desktop/Development/Telstra/HealthConnex/MyCareManager/MyCareManager.Portable/Repositories/TargetRangeRepository/TargetRangeRepository.cs" line="107" offsetX="950" offsetY="1590" expression="message.RequestUri" liveUpdate="False" />

@@ -15,6 +15,8 @@ namespace FileStorage.Controls
 	/// </summary>
 	public class GestureView : View
 	{
+		#region Public Events
+
 		/// <summary>
 		/// Occurs when swipe left.
 		/// </summary>
@@ -29,6 +31,10 @@ namespace FileStorage.Controls
 		/// Occurs when t.
 		/// </summary>
 		public event EventHandler Touch;
+
+		#endregion
+
+		#region Public Methods
 
 		/// <summary>
 		/// Notifies the swipe left.
@@ -63,5 +69,7 @@ namespace FileStorage.Controls
 				Touch(this, EventArgs.Empty);
 			}
 		}
+
+		#endregion
 	}
 }
