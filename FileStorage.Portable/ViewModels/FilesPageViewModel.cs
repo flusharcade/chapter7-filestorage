@@ -203,7 +203,7 @@ namespace FileStorage.Portable.ViewModels
 			{
 				Cells.Clear();
 
-				var files = await _storage.GetTable<FileStorable>(CancellationToken.None);
+				var files = await _storage.GetTable<FileStorable>();
 
 				foreach (var file in files)
 				{

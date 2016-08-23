@@ -1,11 +1,12 @@
-﻿<Properties StartupItem="Droid/FileStorage.Droid.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/FilesPage.xaml">
+﻿<Properties StartupItem="iOS/FileStorage.iOS.csproj" RefactoringSettings.EnableRefactorings="True">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FileStorage.Portable/ViewModels/FilesPageViewModel.cs">
     <Files>
-      <File FileName="FileStorage.Portable/ViewModels/FileItemViewModel.cs" Line="108" Column="3" />
-      <File FileName="Pages/FilesPage.xaml" Line="6" Column="16" />
+      <File FileName="FileStorage.Portable/ViewModels/EditFilePageViewModel.cs" Line="171" Column="16" />
+      <File FileName="FileStorage.Portable/ViewModels/FilesPageViewModel.cs" Line="180" Column="61" />
+      <File FileName="FileStorage.Portable/ViewModels/ViewModelBase.cs" Line="103" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.FileStorage.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.192.168.58.101:5555" />
+  <MonoDevelop.Ide.ItemProperties.FileStorage.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.Android_Accelerated_x86" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>

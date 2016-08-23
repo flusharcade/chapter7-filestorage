@@ -206,7 +206,7 @@ namespace FileStorage.Portable.ViewModels
 			_storage.CreateSQLiteAsyncConnection();
 
 			// create DB tables
-			await _storage.CreateTable<FileStorable>(CancellationToken.None);
+			await _storage.CreateTable<FileStorable>();
 		}
 	}
 }

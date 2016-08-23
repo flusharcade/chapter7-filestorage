@@ -166,14 +166,14 @@ namespace FileStorage.Portable.ViewModels
 				{
 					Key = FileName,
 					Contents = Contents
-				}, CancellationToken.None);
+				});
 
 				NotifyAlert("File saved.");
 			});
 
 			_deleteFileCommand = commandFactory(async () =>
 			{
-				await _storage.DeleteObjectByKey<FileStorable>(FileName, CancellationToken.None);
+				await _storage.DeleteObjectByKey<FileStorable>(FileName);
 				await Navigation.Pop();
 			});
 		}

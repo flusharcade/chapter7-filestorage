@@ -113,13 +113,12 @@ namespace FileStorage.Portable.DataAccess.Storage
 		/// Creates the table.
 		/// </summary>
 		/// <returns>The table.</returns>
-		/// <param name="token">Token.</param>
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
-		public async Task CreateTable<T>(CancellationToken token) where T : class, IStorable, new()
+		public async Task CreateTable<T>() where T : class, IStorable, new()
 		{
 			using (var releaser = await asyncLock.LockAsync())
 			{
-				await _dbAsyncConn.CreateTableAsync<T>(token);
+				await _dbAsyncConn.CreateTableAsync<T>();
 			}
 		}
 
@@ -127,9 +126,8 @@ namespace FileStorage.Portable.DataAccess.Storage
 		/// Gets the table.
 		/// </summary>
 		/// <returns>The table.</returns>
-		/// <param name="token">Token.</param>
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
-		public async Task<IList<T>> GetTable<T>(CancellationToken token) where T : class, IStorable, new()
+		public async Task<IList<T>> GetTable<T>() where T : class, IStorable, new()
 		{
 			var items = default(IList<T>);
 
@@ -159,13 +157,12 @@ namespace FileStorage.Portable.DataAccess.Storage
 		/// Drops the table.
 		/// </summary>
 		/// <returns>The table.</returns>
-		/// <param name="token">Token.</param>
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
-		public async Task DropTable<T>(CancellationToken token) where T : class, IStorable, new()
+		public async Task DropTable<T>() where T : class, IStorable, new()
 		{
 			using (var releaser = await asyncLock.LockAsync())
 			{
-				await _dbAsyncConn.DropTableAsync<T>(token);
+				await _dbAsyncConn.DropTableAsync<T>();
 			}
 		}
 
@@ -174,9 +171,8 @@ namespace FileStorage.Portable.DataAccess.Storage
 		/// </summary>
 		/// <returns>The object.</returns>
 		/// <param name="item">Item.</param>
-		/// <param name="token">Token.</param>
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
-		public async Task InsertObject<T>(T item, CancellationToken token) where T : class, IStorable, new()
+		public async Task InsertObject<T>(T item) where T : class, IStorable, new()
 		{
 			using (var releaser = await asyncLock.LockAsync())
 			{
@@ -204,9 +200,8 @@ namespace FileStorage.Portable.DataAccess.Storage
 		/// </summary>
 		/// <returns>The object.</returns>
 		/// <param name="key">Key.</param>
-		/// <param name="token">Token.</param>
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
-		public async Task<T> GetObject<T>(string key, CancellationToken token) where T : class, IStorable, new()
+		public async Task<T> GetObject<T>(string key) where T : class, IStorable, new()
 		{
 			using (var releaser = await asyncLock.LockAsync())
 			{
@@ -238,9 +233,8 @@ namespace FileStorage.Portable.DataAccess.Storage
 		/// Clears the table.
 		/// </summary>
 		/// <returns>The table.</returns>
-		/// <param name="token">Token.</param>
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
-		public async Task ClearTable<T>(CancellationToken token) where T : class, IStorable, new()
+		public async Task ClearTable<T>() where T : class, IStorable, new()
 		{
 			using (var releaser = await asyncLock.LockAsync())
 			{
@@ -253,13 +247,12 @@ namespace FileStorage.Portable.DataAccess.Storage
 		/// </summary>
 		/// <returns>The object.</returns>
 		/// <param name="item">Item.</param>
-		/// <param name="token">Token.</param>
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
-		public async Task DeleteObject<T>(T item, CancellationToken token)
+		public async Task DeleteObject<T>(T item)
 		{
 			using (var releaser = await asyncLock.LockAsync())
 			{
-				await _dbAsyncConn.DeleteAsync(item, token);
+				await _dbAsyncConn.DeleteAsync(item);
 			}
 		}
 
@@ -268,9 +261,8 @@ namespace FileStorage.Portable.DataAccess.Storage
 		/// </summary>
 		/// <returns>The object by key.</returns>
 		/// <param name="key">Key.</param>
-		/// <param name="token">Token.</param>
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
-		public async Task DeleteObjectByKey<T>(string key, CancellationToken token) where T : class, IStorable, new()
+		public async Task DeleteObjectByKey<T>(string key) where T : class, IStorable, new()
 		{
 			using (var releaser = await asyncLock.LockAsync())
 			{
